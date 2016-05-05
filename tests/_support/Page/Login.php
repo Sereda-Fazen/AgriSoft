@@ -7,18 +7,17 @@ class Login
 {
 
     public static $URL = '/';
-    public static $URL2 = 'customer/account/login/';
-    public static $clickLogIn = 'a.login_click';
+    public static $ButtonClick = '//*[@id="btnLogin"]';
+    public static $seeError = '//div[@id="errormsg"]';
+    public static $enterLogin = '//*[@id="login_username"]';
+    public static $enterPass = '//*[@id="Password"]';
 
-    public static $email = '#email';
-    public static $pass = '#pass';
-    public static $submit = '[name="send"] > span > span';
+    //select location
 
-    public static $logout = 'li.dropit-trigger > a';
-
-    public static $msg = 'div.col-main > p';
-
-    protected $tester;
+    public static $clickContinue = '//*[@id="Continue"]';
+    public static $selectLocation = '//*[@id="LocationId"]';
+    public static $clickId = '//*[@id="LocationId"]/option[2]';
+    public static $seeUser = '//span[@id="loggedinuser"]';
 
     public function __construct(\AcceptanceTester $I)
     {
@@ -27,35 +26,40 @@ class Login
 
 
 
-    public function login()
+    public function emptyLogin()
     {
         $I = $this->tester;
         $I->amOnPage(self::$URL);
-        try {$I->waitForElementVisible('i.mc_embed_close.fa.fa-times.disabled-start');
-            $I->click('i.mc_embed_close.fa.fa-times.disabled-start'); } catch (Exception $e) {}
-        $I->wait(2);
-        $I->click(self::$clickLogIn);
-
+        $I->click(self::$ButtonClick);
+        $I->see('Please Enter User Name.', self::$seeError);
     }
-
-
-    public function loginInvalid($name, $password)
+    public function enterFields($login, $password)
     {
         $I = $this->tester;
-        $I->fillField(self::$email, $name);
-        $I->fillField(self::$pass, $password);
-        $I->click(self::$submit);
-
-        return $this;
+        $I->fillField(self::$enterLogin, $login);
+        $I->fillField(self::$enterPass, $password);
+        $I->click(self::$ButtonClick);
     }
 
-    public function logout()
+    public function selectLocation()
     {
         $I = $this->tester;
-        $I->click(self::$logout);
-        $I->see('You have logged out and will be redirected to our homepage in 5 seconds.',self::$msg);
-
+        $I->click(self::$clickContinue);
+        $I->see('Please Select Location.', self::$seeError);
     }
 
+    public function selectIdLocation()
+    {
+        $I = $this->tester;
+        $I->click(self::$selectLocation);
+        $I->waitForElement(self::$clickId);
+        $I->click(self::$clickId);
+        $I->click(self::$clickContinue);
+
+
+        $I->waitForElement(self::$seeUser);
+        $I->see('vbuvac', self::$seeUser);
+        
+    }
 
 }
