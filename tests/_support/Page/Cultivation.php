@@ -64,6 +64,18 @@ class Cultivation
 
     public static $noDateAvailable = '//*[@id="saved"]';
 
+    // product name and quantity
+
+    public static $prodName = '//*[@id="ProductList"]';
+    public static $prodQty = '//*[@id="ProductQty"]';
+    public static $seeNewProd = '//*[@id="row_0"]';
+    public static $deleteProd = '//*[@id="row_0"]/td[3]/i[2]';
+
+    // order
+    public static $searchUser = '//*[@class="dataTables_filter"]/label/input';
+    public static $showUserName = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[2]';
+    public static $showData = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[3]';
+    public static $showQty = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[4]';
 
 
 
@@ -137,7 +149,7 @@ class Cultivation
     public function enterManualDate()
     {
         $I = $this->tester;
-        $I->fillField(self::$selectOrderDate, '08-03-2020');
+        $I->fillField(self::$selectOrderDate, '05-12-2016');
 
     }
 
@@ -167,5 +179,38 @@ class Cultivation
         $I->see('No data available to Save Clone Order. Operation cancelled.',self::$noDateAvailable);
         $I->waitForElementNotVisible(self::$noDateAvailable, 15);
     }
+
+    public function addProdNameAndQuality($name, $qty)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$prodName, $name);
+        $I->fillField(self::$prodQty, $qty);
+        $I->click(self::$clickAdd);
+        $I->waitForElement(self::$seeNewProd);
+       
+        $I->click(self::$deleteProd);
+        $I->waitForElementNotVisible(self::$seeNewProd);
+
+        $I->fillField(self::$prodName, $name);
+        $I->fillField(self::$prodQty, $qty);
+        $I->click(self::$clickAdd);
+
+    }
+
+    public function clickSaveOrder($user){
+        $I = $this->tester;
+        $I->click(self::$clickOrder);
+        $I->waitForElement(self::$noDateAvailable);
+        $I->see('Clone Order saved successfully.', self::$noDateAvailable);
+
+        $I->fillField(self::$searchUser, $user);
+        $I->waitForElement(self::$showUserName);
+        $I->see('Vanya Buvac',self::$showUserName);
+        $I->see('05-12-2016', self::$showData);
+
+    }
+
+
+
 
 }

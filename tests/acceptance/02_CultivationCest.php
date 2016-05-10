@@ -54,6 +54,16 @@ class CultivationCest
         $cultivationPage->checkInvalidDate();
     }
 
+    function addProdNameAndQuality (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->addProdNameAndQuality('White Widow', '10');
+    }
+
+    function clickSaveOrder (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->clickSaveOrder('Vanya Buvac');
+    }
+
 
 
 

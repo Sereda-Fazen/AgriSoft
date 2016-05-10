@@ -28,7 +28,36 @@ class TestCest
     function checkValidationFields (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->checkValidationFields();
+    }
 
+    function selectOrderDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->selectOrderDate();
+    }
+
+    function enterManualDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->enterManualDate();
+    }
+
+    function selectAssigned (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->selectAssigned();
+    }
+
+    function selectSubLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->selectSubLocation();
+    }
+
+    function checkInvalidDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->checkInvalidDate();
+    }
+
+    function addProdNameAndQuality (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->addProdNameAndQuality('White Widow', '10');
     }
 
     
