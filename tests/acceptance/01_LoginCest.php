@@ -1,7 +1,7 @@
 <?php
 use Step\Acceptance;
 /**
- * @group 1_account
+ * @group 1_login
  */
 class LoginCest
 {
@@ -38,6 +38,7 @@ class LoginCest
 
         $loginPage->enterFields('vbuvac', 'Password1');
         $I->getVisibleText('Select Location');
+        $I->comment('Expected results: Check validation for user');
     }
 
 }
