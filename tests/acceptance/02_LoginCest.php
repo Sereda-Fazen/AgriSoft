@@ -5,10 +5,7 @@ use Step\Acceptance;
  */
 class LoginCest
 {
-    function checkEmptyFields (\Page\Login $loginPage)
-    {
-        $loginPage->emptyLogin();
-    }
+    
 
     function checkEmptyPass (\Page\Login $loginPage, \AcceptanceTester $I)
     {
@@ -42,11 +39,5 @@ class LoginCest
         $loginPage->enterFields('vbuvac', 'Password1');
         $I->getVisibleText('Select Location');
     }
-/*
-    function checkSelect (\Page\Login $loginPage, \AcceptanceTester $I)
-    {
-        $loginPage->selectLocation();
-        $loginPage->selectIdLocation();
-    }
-*/
+
 }

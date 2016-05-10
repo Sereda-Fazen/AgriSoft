@@ -18,9 +18,16 @@ class CultivationCest
     {
         $cultivationPage->cultivation();
     }
-    function checkValidation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function clickSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->checkValidations();
+        $cultivationPage->clickSave();
+    }
+
+    function checkValidationFields (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->checkValidationFields();
+
     }
 
 }

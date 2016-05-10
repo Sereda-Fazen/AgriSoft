@@ -24,8 +24,7 @@ class Login
         $this->tester = $I;
     }
 
-
-
+    
 
     public function enterFields($login, $password)
     {
