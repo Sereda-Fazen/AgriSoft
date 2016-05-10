@@ -1,10 +1,9 @@
 <?php
-use \Step\Acceptance;
-
+use Step\Acceptance;
 /**
- * @group test
+ * @group 1_account
  */
-class TestCest
+class CultivationCest
 {
 
     function checkSuccessLogin (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
@@ -19,23 +18,9 @@ class TestCest
     {
         $cultivationPage->cultivation();
     }
-
-    function clickSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function checkValidation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->clickSave();
+        $cultivationPage->checkValidations();
     }
-
-    function checkValidationFields (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->checkValidationFields();
-
-    }
-
-    
-
-
-
-
 
 }
-

@@ -5,44 +5,48 @@ use Step\Acceptance;
  */
 class LoginCest
 {
-    function loginSuccess(Step\Acceptance\Steps $I, \Page\Login $loginPage) {
-        $loginPage->login();
-        $loginPage->loginInvalid('denimio_test@yahoo.com', '123456');
-        $I->see('From your My Account Dashboard you have the ability to view','div.welcome-msg');
-        $loginPage->logout();
+    function checkEmptyFields (\Page\Login $loginPage)
+    {
+        $loginPage->emptyLogin();
     }
 
-    function loginWrongEmail(AcceptanceTester $I, \Page\Login $loginPage) {
-        $I->reloadPage();
-        $loginPage->login();
-        $loginPage->loginInvalid('test@test.com', '123456');
-        $I->see('Invalid login or password.', 'li.error-msg');
-        $I->comment('Expected result: Please enter a valid email address.');
+    function checkEmptyPass (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
+        $loginPage->enterFields('test', '');
+        $I->see('Please Enter Password.', '//div[@id="errormsg"]');
     }
 
-    function loginEmptyFields(AcceptanceTester $I, \Page\Login $loginPage) {
-
-        $loginPage->loginInvalid('', '');
-        $I->see( 'This is a required field.','#advice-required-entry-pass');
-        $I->comment('Expected result: This is a required field pass and email.');
+    function checkEmptyEmail (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
+        $loginPage->enterFields('', 'test');
+        $I->see('Please Enter User Name.', '//div[@id="errormsg"]');
     }
 
-    function loginEmptyPass(AcceptanceTester $I, \Page\Login $loginPage) {
-        $loginPage->loginInvalid('test@test.org', '');
-        $I->see( 'This is a required field.','#advice-required-entry-pass');
-        $I->comment('Expected result: This is a required field pass.');
+    function checkShortPass (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
+
+        $loginPage->enterFields('test', 'test');
+        $I->getVisibleText('Please lengthen this text to 8 characters');
     }
 
-    function loginEmptyEmail(AcceptanceTester $I, \Page\Login $loginPage) {
-        $loginPage->loginInvalid('', '123456');
-        $I->see( 'This is a required field.','#advice-required-entry-email');
-        $I->comment('Expected result: This is a required field email.');
+    function checkNoSuchUser (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
+
+        $loginPage->enterFields('123456', 'test1234');
+        $I->see('No such user exists in system.', '//div[@id="errormsg"]');
     }
 
-    function loginInvalidEmail(AcceptanceTester $I, \Page\Login $loginPage) {
-        $loginPage->loginInvalid('testemail.com', '123456');
-        $I->see('Please enter a valid email address. For example johndoe@domain.com.', '#advice-validate-email-email');
-        $I->comment('Expected result: Please enter a valid email address.');
-    }
+    function checkSuccessLogin (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
 
+        $loginPage->enterFields('vbuvac', 'Password1');
+        $I->getVisibleText('Select Location');
+    }
+/*
+    function checkSelect (\Page\Login $loginPage, \AcceptanceTester $I)
+    {
+        $loginPage->selectLocation();
+        $loginPage->selectIdLocation();
+    }
+*/
 }

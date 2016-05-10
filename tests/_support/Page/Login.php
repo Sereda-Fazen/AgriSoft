@@ -26,28 +26,17 @@ class Login
 
 
 
-    public function emptyLogin()
-    {
-        $I = $this->tester;
-        $I->amOnPage(self::$URL);
-        $I->click(self::$ButtonClick);
-        $I->see('Please Enter User Name.', self::$seeError);
-    }
+
     public function enterFields($login, $password)
     {
         $I = $this->tester;
+        $I->amOnPage(self::$URL);
         $I->fillField(self::$enterLogin, $login);
         $I->fillField(self::$enterPass, $password);
         $I->click(self::$ButtonClick);
     }
 
-    public function selectLocation()
-    {
-        $I = $this->tester;
-        $I->click(self::$clickContinue);
-        $I->see('Please Select Location.', self::$seeError);
-    }
-
+    
     public function selectIdLocation()
     {
         $I = $this->tester;
@@ -59,7 +48,7 @@ class Login
 
         $I->waitForElement(self::$seeUser);
         $I->see('vbuvac', self::$seeUser);
-        
+
     }
 
 }

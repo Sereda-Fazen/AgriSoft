@@ -24,7 +24,7 @@ modules:
 
             restart: false
             #wait: 13
-            #clear_cookies: false
+            clear_cookies: false
 
             capabilities:
              browserstack.autoWait: 60
