@@ -16,7 +16,7 @@ class Cultivation
 
     public static $clickContinue = '//*[@id="Continue"]';
     public static $selectLocation = '//*[@id="LocationId"]';
-    public static $clickId = '//*[@id="LocationId"]/option[3]';
+    public static $clickId = '//*[@id="LocationId"]';
     public static $seeUser = '//span[@id="loggedinuser"]';
 
     // cultivation
@@ -54,15 +54,27 @@ class Cultivation
 
     public static $selectAssigned = '//select[@id="UserId"]';
     public static $tableUsers = '//select[@id="UserId"]/option';
-    public static $selectUser = '//select[@id="UserId"]/option[74]';
+    public static $selectUser = '//select[@id="UserId"]';
 
     //sub location
 
     public static $selectSubLocation = '//select[@id="SubLocCode"]';
     public static $tableLocation = '//select[@id="SubLocCode"]/option';
-    public static $selectSub = '//select[@id="SubLocCode"]/option[2]';
+    public static $selectSub = '//select[@id="SubLocCode"]';
 
     public static $noDateAvailable = '//*[@id="saved"]';
+
+
+    // plant origin
+
+    public static $selectPlantOrigin = '//select[@id="OrderType"]';
+    public static $tableOrigin = '//select[@id="SubLocCode"]/option';
+    public static $selectOrigin = '//select[@id="OrderType"]';
+
+    // plant origin batch
+
+    public static $selectPlantOriginBatch = '//*[@id="FromBatch"]';
+
 
     // product name and quantity
 
@@ -77,6 +89,8 @@ class Cultivation
     public static $showData = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[3]';
     public static $showQty = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[4]';
 
+    public static $recordsPerPage = '//select[@name="tbl_EditOrderList_length"]';
+    public static $show100 = '//select[@name="tbl_EditOrderList_length"]/option[4]';
 
 
     public function __construct(\AcceptanceTester $I)
@@ -94,16 +108,17 @@ class Cultivation
         $I->click(self::$ButtonClick);
     }
 
-    public function selectionLocation()
+    public function selectionLocation($location,$login )
     {
         $I = $this->tester;
         $I->seeElement(self::$selectLocation);
         $I->click(self::$selectLocation);
         $I->waitForElement(self::$clickId);
-        $I->click(self::$clickId);
+        $I->waitForText($location);
+        $I->selectOption(self::$clickId, $location);
         $I->click(self::$clickContinue);
         $I->waitForElement(self::$seeUser);
-        $I->see('vbuvac', self::$seeUser);
+        $I->see($login, self::$seeUser);
 
     }
     public function cultivation (){
@@ -130,7 +145,7 @@ class Cultivation
         $I->seeElement(self::$seeProdQuality);
     }
 
-    public function selectOrderDate()
+    public function selectOrderDate($date)
     {
         $I = $this->tester;
         $I->click(self::$selectOrderDate);
@@ -143,33 +158,52 @@ class Cultivation
         $I->waitForElement(self::$selectYear);
         $I->click(self::$selectYear2020);
         $I->click(self::$clickDate);
-        $I->getVisibleText(self::$selectOrderDate ,'08-03-2020');
+        $I->getVisibleText(self::$selectOrderDate , $date);
 
     }
-    public function enterManualDate()
+    public function enterManualDate($dateManual)
     {
         $I = $this->tester;
-        $I->fillField(self::$selectOrderDate, '05-12-2016');
+        $I->fillField(self::$selectOrderDate, $dateManual);
 
     }
 
-    public function selectAssigned()
+    public function selectAssigned($showUser)
     {
         $I = $this->tester;
         $I->click(self::$selectAssigned);
         $I->waitForElement(self::$tableUsers);
-        $I->click(self::$selectUser);
-        $I->getVisibleText(self::$selectAssigned,'Vanya Buvac');
+        $I->selectOption(self::$selectUser,$showUser);
+        $I->getVisibleText(self::$selectAssigned, $showUser);
     }
 
-    public function selectSubLocation()
+    public function selectSubLocation($sub)
     {
         $I = $this->tester;
         $I->click(self::$selectSubLocation);
         $I->waitForElement(self::$tableLocation);
-        $I->click(self::$selectSub);
-        $I->getVisibleText(self::$selectSubLocation,'Clone Room');
+        $I->selectOption(self::$selectSub,$sub);
+        $I->getVisibleText(self::$selectSubLocation, $sub);
     }
+
+    public function selectPlantOrigin($plant)
+    {
+        $I = $this->tester;
+        $I->click(self::$selectPlantOrigin);
+        $I->waitForElement(self::$tableOrigin);
+        $I->selectOption(self::$selectOrigin,$plant);
+        $I->getVisibleText(self::$selectPlantOrigin, $plant);
+    }
+
+    public function selectPlantOriginBatch($batch)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$selectPlantOriginBatch, $batch);
+        $I->waitForText($batch);
+
+    }
+
+
 
     public function checkInvalidDate()
     {
@@ -197,19 +231,36 @@ class Cultivation
 
     }
 
-    public function clickSaveOrder($user){
+    public function clickSaveOrder()
+    {
         $I = $this->tester;
+ 
         $I->click(self::$clickOrder);
         $I->waitForElement(self::$noDateAvailable);
         $I->see('Clone Order saved successfully.', self::$noDateAvailable);
 
+    }
+    
+    public function checkOrderList($user, $searchName, $searchData, $searchQty)
+    {
+        $I = $this->tester;
+        $I->click(self::$recordsPerPage);
+        $I->waitForElement(self::$show100);
+        $I->click(self::$show100);
+        $I->waitForElement(self::$show100);
+        $I->scrollDown(500);
+        $I->waitForElement(self::$showUserName);
+        $I->see($searchName, self::$showUserName);
+        $I->see($searchData, self::$showData);
+        $I->see($searchQty, self::$showQty);
+        
         $I->fillField(self::$searchUser, $user);
         $I->waitForElement(self::$showUserName);
-        $I->see('Vanya Buvac',self::$showUserName);
-        $I->see('05-12-2016', self::$showData);
+        $I->see($searchName,self::$showUserName);
+        $I->see($searchData, self::$showData);
+        $I->see($searchQty, self::$showQty);
 
     }
-
 
 
 

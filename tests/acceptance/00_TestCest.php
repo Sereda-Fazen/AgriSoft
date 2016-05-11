@@ -7,18 +7,22 @@ use \Step\Acceptance;
 class TestCest
 {
 
-    function checkSuccessLogin (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function checkSuccessLogin(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->enterFields('vbuvac', 'Password1');
     }
-    function selectLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function selectLocation(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectionLocation();
+        $cultivationPage->selectionLocation('Grow 1', 'vbuvac');
     }
-    function navigateToCultivation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function navigateToCultivation(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->cultivation();
     }
+
+/*
 
     function clickSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
@@ -32,22 +36,22 @@ class TestCest
 
     function selectOrderDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectOrderDate();
+        $cultivationPage->selectOrderDate('08-03-2020');
     }
 
     function enterManualDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->enterManualDate();
+        $cultivationPage->enterManualDate('05-12-2016');
     }
 
     function selectAssigned (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectAssigned();
+        $cultivationPage->selectAssigned('Vanya Buvac');
     }
 
     function selectSubLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectSubLocation();
+        $cultivationPage->selectSubLocation('Clone Room');
     }
 
     function checkInvalidDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
@@ -59,6 +63,19 @@ class TestCest
     {
         $cultivationPage->addProdNameAndQuality('White Widow', '10');
     }
+
+    function clickSaveOrder (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->clickSaveOrder();
+    }
+
+    function checkOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->checkOrderList('Vanya Buvac','Vanya Buvac','05-12-2016','10');
+
+    }
+*/
+
 
     
 
