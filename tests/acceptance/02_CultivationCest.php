@@ -41,7 +41,7 @@ class CultivationCest
 
     function selectAssigned (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectAssigned('Dan Stofka');
+        $cultivationPage->selectAssigned('Vanya Buvac');
     }
 
     function selectSubLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
