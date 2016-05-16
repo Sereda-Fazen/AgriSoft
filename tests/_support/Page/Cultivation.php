@@ -129,6 +129,11 @@ class Cultivation
 
     public static $back = '#btnback';
     public static $firstBlock = 'Create Plant Order';
+    
+    //cancel
+    
+    public static $cancel = '//*[@id="txtedit_0"]';
+    public static $saveEdit = '#btnEditOrder';
 
     public function __construct(\AcceptanceTester $I)
     {
@@ -399,9 +404,28 @@ class Cultivation
         $I->waitForElement(self::$noDateAvailable);
         $I->see('Clone Order Edited successfully. Clone Order No',self::$noDateAvailable);
         $I->click(self::$x);
+
        // $I->click(self::$back);
         //$I->waitForText(self::$firstBlock);
     }
+    
+
+    public function checkCancelEnterQty($qty1, $qty2)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $qty1);
+        $I->see($qty1, self::$showQty);
+        $I->click(self::$edit);
+        $I->waitForElement(self::$cancel);
+        $I->fillField(self::$cancel,$qty2);
+        
+        $I->click(self::$saveEdit);
+        $I->see('Clone Order Edited successfully. Clone Order No',self::$noDateAvailable);
+        $I->fillField(self::$searchUser, $qty2);
+        $I->see($qty2, self::$showQty);
+    }
+
+
 
 
     public function deletePlantOrderList($searchID)

@@ -41,31 +41,30 @@ class TestCest
     }
 
 
-
     function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
         $cultivationPage->checkEditOrder('777','06-12-2016', 'Vanya Buvac', 'Clone Room');
 
     }
 
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Delete new Order and check after removing
-     */
+    function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $cultivationPage->checkCancelEnterQty('777', '7777');
 
+    }
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->deletePlantOrderList('777');
+        $cultivationPage->deletePlantOrderList('7777');
 
     }
     function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchInvalidResults('777');
+        $cultivationPage->searchInvalidResults('7777');
 
     }
 
 
+    
 
 
 

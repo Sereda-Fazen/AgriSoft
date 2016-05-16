@@ -139,7 +139,7 @@ class CultivationCest
      * Select Plant Origin Batch
      */
 
-    function selectPlantOriginBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function enterPlantOriginBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->selectPlantOriginBatch('BM0');
     }
@@ -150,7 +150,7 @@ class CultivationCest
      * Select Qty From Batch
      */
 
-    function selectQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function enterQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->selectQtyFromBatch('777');
     }
@@ -209,7 +209,7 @@ class CultivationCest
      * Check pages Navigation (previous, next , 1-5)
      */
 
-    function checkPages (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
+    function checkPagesNavigation (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
         $cultivationPage->checkPages ();
         $I->getNavigation();
@@ -228,7 +228,14 @@ class CultivationCest
         $cultivationPage->checkEditOrder('777','06-12-2016', 'Vanya Buvac', 'Clone Room');
 
     }
-    
+
+    function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $cultivationPage->checkCancelEnterQty('777', '7777');
+
+    }
+
+
     /**
      * @param \Page\Cultivation $cultivationPage
      * @param AcceptanceTester $I
@@ -237,12 +244,12 @@ class CultivationCest
 
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->deletePlantOrderList('777');
+        $cultivationPage->deletePlantOrderList('7777');
 
     }
     function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchInvalidResults('777');
+        $cultivationPage->searchInvalidResults('7777');
 
     }
 
