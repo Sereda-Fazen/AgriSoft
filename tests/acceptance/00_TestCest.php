@@ -6,78 +6,64 @@ use \Step\Acceptance;
  */
 class TestCest
 {
+    /**
+     * @param \Page\Cultivation $cultivationPage
+     * @param AcceptanceTester $I
+     * Login
+     */
 
-    function checkSuccessLogin(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function checkSuccessLogin (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->enterFields('vbuvac', 'Password1');
     }
 
-    function selectLocation(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    /**
+     * @param \Page\Cultivation $cultivationPage
+     * @param AcceptanceTester $I
+     * Select Select Location
+     */
+
+    function selectLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectionLocation('Grow 1', 'vbuvac');
+        $cultivationPage->selectionLocation('Grow 1','vbuvac');
     }
 
-    function navigateToCultivation(\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    /**
+     * @param \Page\Cultivation $cultivationPage
+     * @param AcceptanceTester $I
+     * Navigate to Cultivation
+     */
+
+    function navigateToCultivation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->cultivation();
     }
 
-/*
 
-    function clickSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->clickSave();
+        $cultivationPage->checkEditOrder('777','06-12-2016', 'Vanya Buvac', 'Clone Room');
+
     }
 
-    function checkValidationFields (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->checkValidationFields();
-    }
+    /**
+     * @param \Page\Cultivation $cultivationPage
+     * @param AcceptanceTester $I
+     * Delete new Order and check after removing
+     */
 
-    function selectOrderDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectOrderDate('08-03-2020');
-    }
-
-    function enterManualDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->enterManualDate('05-12-2016');
-    }
-
-    function selectAssigned (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectAssigned('Vanya Buvac');
-    }
-
-    function selectSubLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectSubLocation('Clone Room');
-    }
-
-    function checkInvalidDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->checkInvalidDate();
-    }
-
-    function addProdNameAndQuality (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->addProdNameAndQuality('White Widow', '10');
-    }
-
-    function clickSaveOrder (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->clickSaveOrder();
-    }
-
-    function checkOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->checkOrderList('Vanya Buvac','Vanya Buvac','05-12-2016','10');
+        $cultivationPage->deletePlantOrderList('777');
 
     }
-*/
+    function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->searchInvalidResults('777');
 
-
-    
+    }
 
 
 

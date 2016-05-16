@@ -63,6 +63,8 @@ class Cultivation
     public static $selectSub = '//select[@id="SubLocCode"]';
 
     public static $noDateAvailable = '//*[@id="saved"]';
+    public static $x = '#saved > div:nth-of-type(2) > span';
+
 
 
     // plant origin
@@ -75,11 +77,18 @@ class Cultivation
 
     public static $selectPlantOriginBatch = '//*[@id="FromBatch"]';
 
+    // Subtract Qty from Batch
+
+    public static $qtyFromBatch = '//*[@id="QtyFromBatch"]';
+
 
     // product name and quantity
 
     public static $prodName = '//*[@id="ProductList"]';
+    public static $list = '//li[@class="ui-menu-item"]/a';
+
     public static $prodQty = '//*[@id="ProductQty"]';
+    public static $idProd = '//tr[@id="row_1"]';
     public static $seeNewProd = '//*[@id="row_0"]';
     public static $deleteProd = '//*[@id="row_0"]/td[3]/i[2]';
 
@@ -88,10 +97,38 @@ class Cultivation
     public static $showUserName = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[2]';
     public static $showData = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[3]';
     public static $showQty = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[4]';
+    public static $showID = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[1]';
+    public static $showCompletedQty = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[5]';
+    public static $showPendingQty = '//*[@id="tbl_EditOrderList"]/tbody/tr/td[6]';
+
 
     public static $recordsPerPage = '//select[@name="tbl_EditOrderList_length"]';
     public static $show100 = '//select[@name="tbl_EditOrderList_length"]/option[4]';
 
+    public static $invalidSearch = '//*[@class="dataTables_empty"]';
+    // search in plant order list
+
+    public static $seeSave = '//*[@id="saved"]';
+    public static $edit = '//*[@id="tbl_EditOrderList"]/tbody/tr/td/i';
+    public static $showEdit = '//*[@id="checkbox_0"]';
+    public static $save = '//*[@id="btnEditOrder"]';
+
+    // check pages
+
+    public static $page2 = '//*[@class="dataTables_paginate paging_bootstrap pagination"]/ul/li[3]/a';
+    public static $clickNext = '//*[@class="dataTables_paginate paging_bootstrap pagination"]/ul/li[7]/a';
+    public static $previous = '//*[@class="dataTables_paginate paging_bootstrap pagination"]/ul/li[1]/a';
+    public static $prevDisabled = '//li[@class="prev disabled"]';
+
+
+    // edit
+
+    public static $moveOrderData = '//input[@id="txtOrderDateEdit"][@disabled ="disabled"]';
+    public static $moveOrderBy = '//input[@id="txtOrderByEdit"][@disabled ="disabled"]';
+    public static $moveSubLocation = '//input[@id="txtGrowLocNameEdit"][@disabled ="disabled"]';
+
+    public static $back = '#btnback';
+    public static $firstBlock = 'Create Plant Order';
 
     public function __construct(\AcceptanceTester $I)
     {
@@ -203,33 +240,49 @@ class Cultivation
 
     }
 
-
-
     public function checkInvalidDate()
     {
         $I = $this->tester;
         $I->click(self::$clickOrder);
         $I->waitForElement(self::$noDateAvailable);
         $I->see('No data available to Save Clone Order. Operation cancelled.',self::$noDateAvailable);
-        $I->waitForElementNotVisible(self::$noDateAvailable, 15);
+        $I->click(self::$x);
     }
 
+    public function selectQtyFromBatch($qtyBatch)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$qtyFromBatch, $qtyBatch);
+        $I->getVisibleText($qtyBatch);
+
+    }
+
+    public function prodNameUndefined($name, $qty)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$prodName, $name);
+        
+        $I->fillField(self::$prodQty, $qty);
+        $I->click(self::$clickAdd);
+        $I->getVisibleText('undefined');
+        $I->click(self::$deleteProd);
+        $I->waitForElementNotVisible(self::$seeNewProd);
+
+    }
     public function addProdNameAndQuality($name, $qty)
     {
         $I = $this->tester;
         $I->fillField(self::$prodName, $name);
+        $I->waitForElementVisible(self::$list);
+        $I->click(self::$list);
         $I->fillField(self::$prodQty, $qty);
         $I->click(self::$clickAdd);
-        $I->waitForElement(self::$seeNewProd);
-       
-        $I->click(self::$deleteProd);
-        $I->waitForElementNotVisible(self::$seeNewProd);
+        $I->getVisibleText(self::$idProd, $name);
 
-        $I->fillField(self::$prodName, $name);
-        $I->fillField(self::$prodQty, $qty);
-        $I->click(self::$clickAdd);
 
     }
+
+
 
     public function clickSaveOrder()
     {
@@ -240,7 +293,7 @@ class Cultivation
         $I->see('Clone Order saved successfully.', self::$noDateAvailable);
 
     }
-    
+    /*
     public function checkOrderList($user, $searchName, $searchData, $searchQty)
     {
         $I = $this->tester;
@@ -253,14 +306,142 @@ class Cultivation
         $I->see($searchName, self::$showUserName);
         $I->see($searchData, self::$showData);
         $I->see($searchQty, self::$showQty);
-        
+    }
+    */
+    /**
+     * Check Search
+     * @param $user
+     */
+
+    public function searchOrderBy($user)
+    {
+        $I = $this->tester;
         $I->fillField(self::$searchUser, $user);
         $I->waitForElement(self::$showUserName);
-        $I->see($searchName,self::$showUserName);
-        $I->see($searchData, self::$showData);
-        $I->see($searchQty, self::$showQty);
+        $I->see($user, self::$showUserName);
+    }
+    
+    public function searchOrderID($id)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $id);
+        $I->see($id, self::$showID);
+    }
+
+    public function searchData($data)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $data);
+        $I->see($data, self::$showData);
+    }
+
+    public function searchQty($qty)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $qty);
+        $I->see($qty, self::$showQty);
+    }
+
+    public function searchCompletedQty($completedQty)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $completedQty);
+        $I->see($completedQty, self::$showCompletedQty);
+    }
+    public function searchPendingQty($pendingQty)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $pendingQty);
+        $I->see($pendingQty, self::$showPendingQty);
+    }
+
+
+
+    public function searchInvalidResults($user)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $user);
+        $I->waitForElement(self::$invalidSearch);
+        $I->see('No matching records found',self::$invalidSearch);
+        
+    }
+
+    public function checkPages()
+    {
+        $I = $this->tester;
+        $I->reloadPage();
+        $I->scrollDown(500);
+        $I->click(self::$page2);
+        $I->click(self::$previous);
+        $I->seeElement(self::$prevDisabled);
+        $I->click(self::$clickNext);
 
     }
+
+
+    public function checkEditOrder($qty, $data, $name, $subLocal)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $qty);
+        $I->see($qty, self::$showQty);
+        $I->click(self::$edit);
+
+        $I->moveMouseOver(self::$moveOrderData);
+        $I->getVisibleText($data,self::$moveOrderData);
+
+        $I->moveMouseOver(self::$moveOrderBy);
+        $I->getVisibleText($name,self::$moveOrderBy);
+
+        $I->moveMouseOver(self::$moveSubLocation);
+        $I->getVisibleText($subLocal,self::$moveSubLocation);
+
+        $I->click(self::$save);
+        $I->waitForElement(self::$noDateAvailable);
+        $I->see('Clone Order Edited successfully. Clone Order No',self::$noDateAvailable);
+        $I->click(self::$x);
+       // $I->click(self::$back);
+        //$I->waitForText(self::$firstBlock);
+    }
+
+
+    public function deletePlantOrderList($searchID)
+    {
+        $I = $this->tester;
+        $I->fillField(self::$searchUser, $searchID);
+        $I->see($searchID,self::$showQty);
+        $I->click(self::$edit);
+        $I->waitForElement(self::$showEdit);
+        $I->click(self::$showEdit);
+        $I->click(self::$save);
+        $I->waitForElement(self::$seeSave);
+        $I->see('Clone Order Edited successfully.',self::$seeSave);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
+
+    
 
 
 
