@@ -234,8 +234,7 @@ class CultivationCest
         $cultivationPage->checkCancelEnterQty('777', '7777');
 
     }
-
-
+    
     /**
      * @param \Page\Cultivation $cultivationPage
      * @param AcceptanceTester $I
