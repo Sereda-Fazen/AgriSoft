@@ -47,7 +47,7 @@ class CultivationCest
      */
 
 
-    function clickSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    function checkTheButtonSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->clickSave();
     }
