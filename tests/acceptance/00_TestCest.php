@@ -41,200 +41,26 @@ class TestCest
     }
 
     /**
-     * @param \Page\Cultivation $cultivationPage
+     * @param \Page\Cutting $cuttingPage
      * @param AcceptanceTester $I
-     * Check empty fields
+     * Check the Button Cutting and Navigate and show the Table
      */
 
-
-    function checkTheButtonSave (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->clickSave();
+    function clickOnCutting (\Page\Cutting $cuttingPage, \AcceptanceTester $I){
+        $cuttingPage->clickCutting();
+   
     }
 
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Check Validations
-     */
-
-    function checkValidationFields (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->checkValidationFields();
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Enter Product Name and Qty
-     */
-
-    function addProdNameAndQuality (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-
-        $cultivationPage->prodNameUndefined('Wrong', '123456');
-        $cultivationPage->addProdNameAndQuality('Wh', '777');
-
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Data
-     */
-
-
-    function selectOrderDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectOrderDate('08-03-2020');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Enter manual data
-     */
-
-    function enterManualDate (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->enterManualDate('06-12-2016');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Assigned
-     */
-
-    function selectAssigned (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectAssigned('Vanya Buvac');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Sub Location
-     */
-
-    function selectSubLocation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectSubLocation('Clone Room');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Plant Origin
-     */
-
-    function selectPlantOrigin (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectPlantOrigin('Seed');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Plant Origin Batch
-     */
-
-    function enterPlantOriginBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectPlantOriginBatch('BM0');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Select Qty From Batch
-     */
-
-    function enterQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->selectQtyFromBatch('777');
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Click on Button - Save
-     */
-
-    function clickSaveOrder (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->clickSaveOrder();
-
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Check Searches(OrderBy, OrderID, QTY, Data) and invalid Result
-     */
-    function checkSearch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchOrderBy('Vanya Buvac');
-    }
-    function searchOrderID (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchOrderID('O1600');
+    function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->searchNewQtyInPlantOrder();
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->searchQty('777');
     }
-    function searchData (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchData('2016');
+    function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->seeCompletedQtyPending('5','772');
     }
-    function searchCompletedQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchCompletedQty('0');
-    }
-    function searchPendingQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchPendingQty('50');
-
-    }
-    function searchInvalidResults (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchInvalidResults('Wrong');
-
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param Acceptance\CultivationSteps $I
-     * Check pages Navigation (previous, next , 1-5)
-     */
-
-    function checkPagesNavigation (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $cultivationPage->checkPages ();
-        $I->getNavigation();
-
-    }
-
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Editing
-     */
-
-
-    function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $cultivationPage->checkEditOrder('777','06-12-2016', 'Vanya Buvac', 'Clone Room');
-
-    }
-
-    function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $cultivationPage->checkCancelEnterQty('777', '7777');
-
-    }
-
     
 
 
