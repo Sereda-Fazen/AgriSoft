@@ -245,10 +245,29 @@ class CuttingPhaseCest
         $cultivationPage->checkBottomGenerateBarcode('BL11614');
     }
 
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Save
+     */
+
     function clickSaveCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        
+        $cultivationPage->clickSaveCutting();
     }
+
+
+
+    function checkSearchTotal (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->checkSearchTotalQty('777');
+    }
+
+    function checkSearchNewCompletedQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->checkSearchNewCompletedQty('5','772');
+    }
+    
+
+
     
 
 

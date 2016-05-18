@@ -101,7 +101,7 @@ class Cutting
 
     public static $clickSaveCutting = '//*[@id="CutList"]/div[2]/input[2]';
     public static $msgSaved = '#saved > div:nth-of-type(2) > span';
-
+    public static $success = '//*[@id="saved"]';
     
     public function __construct(\AcceptanceTester $I)
     {
@@ -339,6 +339,7 @@ class Cutting
 
         $I->waitForElement(self::$barcode);
         $I->getVisibleText($numBarcode,self::$generateBarcode);
+        $I->wait(1);
 
     }
 
@@ -347,8 +348,21 @@ class Cutting
         $I = $this->tester;
         $I->click(self::$clickSaveCutting);
         $I->waitForElement(self::$msgSaved);
-        $I->see('Cutting saved successfully. Cutting No :', self::$msgSaved);
+        $I->see('Cutting saved successfully. Cutting No :', self::$success);
     }
+
+    public function checkSearchNewCompletedQty($completedQty,$pendingQty)
+    {
+        $I = $this->tester;
+        $I->see($completedQty, self::$sortCompletedQty);
+        $I->see($pendingQty, self::$sortPendingQty);
+    }
+
+
+
+
+
+
 
 
 
