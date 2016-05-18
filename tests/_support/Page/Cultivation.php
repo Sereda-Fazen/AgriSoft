@@ -295,7 +295,7 @@ class Cultivation
  
         $I->click(self::$clickOrder);
         $I->waitForElement(self::$noDateAvailable);
-        $I->see('Clone Order Edited successfully. Clone Order No', self::$noDateAvailable);
+        $I->see('Clone Order saved successfully.', self::$noDateAvailable);
 
     }
     /*
