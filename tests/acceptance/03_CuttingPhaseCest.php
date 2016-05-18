@@ -78,7 +78,7 @@ class CuttingPhaseCest
 
     function checkArrowForOrderID (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '05-10-2016', '2121', '0','2119');
+        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '06-12-2016', '777', '0','777');
     }
 
     /**
@@ -100,17 +100,219 @@ class CuttingPhaseCest
         $cultivationPage->checkSearchOrderBy('Vanya Buvac');
     }
     function checkSearchDate (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchDate('05-10-2016');
+        $cultivationPage->checkSearchDate('06-12-2016');
     }
     function checkSearchTotalQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchTotalQty('2121');
+        $cultivationPage->checkSearchTotalQty('777');
     }
     function checkSearchCompletedQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
         $cultivationPage->checkSearchCompletedQty('0');
     }
     function checkSearchPendingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchPendingQty('2119');
+        $cultivationPage->checkSearchPendingQty('777');
     }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Click on button Edit(pencil)
+     */
+
+    function clickEdit (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->clickEdit();
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Check fields in the Edit Order
+     */
+
+    function checkTreeFieldsDisabled (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->checkFieldsInEditOrder('06-12-2016', 'Vanya Buvac', 'Clean Room');
+    }
+
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Check validation other fields
+     */
+
+
+    function checkValidationOtherFields (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->checkValidationOtherFields();
+    }
+
+    function showTableWithData (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->showTableWithData('1','White Widow','777','0', '777');
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Select Tray and Enter Date
+     */
+
+
+    function selectTrayAndEnterDate (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->enterTrayAndDate('CL0001','08-07-2016','09-07-2016','10-07-2016');
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Check alert window for Cutting quantity
+     */
+
+    function checkNullCuttingQuantity (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->pleaseEnterQuantity();
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Enter Cutting Qty
+     */
+
+    function enterIncorrectCuttingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->enterIncorrectCuttingQty('778');
+    }
+
+
+    function enterCuttingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->enterCuttingQty('5');
+    }
+
+    function checkNullCuttingBatch (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->pleaseEnterBatch();
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Enter the Batch (Cutting saved successfully.)
+     */
+    function enterBatch (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->enterBatch('Test123');
+    }
+
+    /**
+     * @param \Page\Cutting $cultivationPage
+     * @param AcceptanceTester $I
+     * Next page
+     */
+
+    function navigateToNetPage (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->navigateToNetPage('5');
+    }
+
+    function checkBottomSaveScanRFID (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        /**
+         * SaveScanRFID
+         */
+        $cultivationPage->checkBottomSaveScanRFID();
+    }
+
+
+    function checkBottomReadRFIDBarcode (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        /**
+         * ReadRFIDBarcode
+
+         */
+        $cultivationPage->checkBottomReadRFIDBarcode();
+    }
+
+
+    function checkBottomGenerateBarcode (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        /**
+         * GenerateBarcode
+         */
+        $cultivationPage->checkBottomGenerateBarcode('BL11614');
+    }
+
+    function clickSaveCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
+    {
+        
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+/*
+
+    function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->deletePlantOrderList('7777');
+
+    }
+    function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->searchInvalidResults('7777');
+
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
 
 
 

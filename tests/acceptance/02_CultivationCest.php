@@ -73,7 +73,7 @@ class CultivationCest
     {
 
         $cultivationPage->prodNameUndefined('Wrong', '123456');
-        $cultivationPage->addProdNameAndQuality('Wh', '777');
+        $cultivationPage->addProdNameAndQuality('Wh', '77');
 
     }
 
@@ -152,7 +152,7 @@ class CultivationCest
 
     function enterQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectQtyFromBatch('777');
+        $cultivationPage->selectQtyFromBatch('77');
     }
 
     /**
@@ -182,7 +182,7 @@ class CultivationCest
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchQty('777');
+        $cultivationPage->searchQty('77');
     }
     function searchData (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
@@ -225,32 +225,17 @@ class CultivationCest
 
     function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkEditOrder('777','06-12-2016', 'Vanya Buvac', 'Clone Room');
+        $cultivationPage->checkEditOrder('77','06-12-2016', 'Vanya Buvac', 'Clone Room');
 
     }
 
     function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkCancelEnterQty('777', '7777');
+        $cultivationPage->checkCancelEnterQty('77', '777');
 
     }
     
-    /**
-     * @param \Page\Cultivation $cultivationPage
-     * @param AcceptanceTester $I
-     * Delete new Order and check after removing
-     */
 
-    function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->deletePlantOrderList('7777');
-
-    }
-    function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->searchInvalidResults('7777');
-
-    }
 
 
 
