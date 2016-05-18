@@ -51,25 +51,22 @@ class CuttingPhaseCest
         $cuttingPage->showVisibleTable();
     }
 
-/*
-    function returnToCultivation (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
-    {
-        $cultivationPage->cultivation();
-    }
 
-    function navigateToCutting (\Page\Cutting $cuttingPage, \AcceptanceTester $I){
-        $cuttingPage->clickCutting();
-
-    }
-
-    function checkPagesNavigation (\Page\Cutting $cultivationPage, \Step\Acceptance\CultivationSteps $I)
-    {
-      //  $cultivationPage->checkPages ();
-        $I->getNavigation();
-
-    }
-
-*/
+    
+    /*
+        function navigateToCutting (\Page\Cutting $cuttingPage, \AcceptanceTester $I){
+            $cuttingPage->clickCutting();
+    
+        }
+    
+        function checkPagesNavigation (\Page\Cutting $cultivationPage, \Step\Acceptance\CultivationSteps $I)
+        {
+          //  $cultivationPage->checkPages ();
+            $I->getNavigation();
+    
+        }
+    
+    */
     /**
      * @param \Page\Cutting $cultivationPage
      * @param AcceptanceTester $I
@@ -262,9 +259,22 @@ class CuttingPhaseCest
         $cultivationPage->checkSearchTotalQty('777');
     }
 
-    function checkSearchNewCompletedQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+    function searchNewQtyInCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
         $cultivationPage->checkSearchNewCompletedQty('5','772');
     }
+    
+    function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->searchNewQtyInPlantOrder();
+    }
+    function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+    {
+        $cultivationPage->searchQty('777');
+    }
+    function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
+        $cultivationPage->seeCompletedQtyPending('5','772');
+    }
+
+    
     
 
 

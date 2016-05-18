@@ -102,6 +102,14 @@ class Cutting
     public static $clickSaveCutting = '//*[@id="CutList"]/div[2]/input[2]';
     public static $msgSaved = '#saved > div:nth-of-type(2) > span';
     public static $success = '//*[@id="saved"]';
+
+
+    //return to plant order
+
+    public static $clickPlantOrder = '//div[@id="tabs"]/ul/li';
+
+    public static $completedQtyInPlantOrder = '//*[@id="tbl_EditOrderList"]//tbody/tr/td[5]';
+    public static $pendingQtyInPlantOrder = '//*[@id="tbl_EditOrderList"]//tbody/tr/td[6]';
     
     public function __construct(\AcceptanceTester $I)
     {
@@ -335,8 +343,8 @@ class Cutting
         $I->wait(1);
         $I->click(self::$barcode);
         $I->waitForElement(self::$ok);
+        $I->wait(1);
         $I->click(self::$ok);
-
         $I->waitForElement(self::$barcode);
         $I->getVisibleText($numBarcode,self::$generateBarcode);
         $I->wait(1);
@@ -356,7 +364,26 @@ class Cutting
         $I = $this->tester;
         $I->see($completedQty, self::$sortCompletedQty);
         $I->see($pendingQty, self::$sortPendingQty);
+        
     }
+
+    public function searchNewQtyInPlantOrder(){
+        $I = $this->tester;
+        $I->waitForElement(self::$clickPlantOrder);
+        $I->click(self::$clickPlantOrder);
+    }
+
+    public function seeCompletedQtyPending($completedQty,$pendingQty){
+        $I = $this->tester;
+        $I->see($completedQty, self::$completedQtyInPlantOrder);
+        $I->see($pendingQty, self::$pendingQtyInPlantOrder);
+    }
+
+
+
+
+
+
 
 
 
