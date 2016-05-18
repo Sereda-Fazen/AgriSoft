@@ -296,7 +296,6 @@ class Cultivation
         $I->click(self::$clickOrder);
         $I->waitForElement(self::$noDateAvailable);
         $I->see('Clone Order Edited successfully. Clone Order No', self::$noDateAvailable);
-        $I->click(self::$x);
 
     }
     /*
@@ -421,6 +420,7 @@ class Cultivation
         $I->fillField(self::$cancel,$qty2);
         
         $I->click(self::$saveEdit);
+        $I->waitForElement(self::$noDateAvailable);
         $I->see('Clone Order Edited successfully. Clone Order No',self::$noDateAvailable);
         $I->fillField(self::$searchUser, $qty2);
         $I->see($qty2, self::$showQty);
