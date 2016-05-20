@@ -153,13 +153,13 @@ class CultivationSteps extends \AcceptanceTester
 
     public function getShowUserFromCutting(){
         $I = $this;
-        $table = count($I->grabMultiple('//table[@id="tbl_PlantByBatch"]//tr[4]/td'));
+        $table = count($I->grabMultiple('//table[@id="tbl_PlantByBatch"]//tr[5]/td'));
         for ($t = 1; $t <= $table; $t++){
-            $I->seeElement('//table[@id="tbl_PlantByBatch"]//tr[4]/td['.$t.']');
+            $I->seeElement('//table[@id="tbl_PlantByBatch"]//tr[5]/td['.$t.']');
 
             switch ($t){
                 case 1:
-                    $I->waitForText('4');
+                    $I->waitForText('5');
                     break;
 
                 case 2:
@@ -236,6 +236,105 @@ class CultivationSteps extends \AcceptanceTester
 
             }
         }
+    }
+
+    public function getShowPlantNotes(){
+        $I = $this;
+        $fields = count($I->grabMultiple('//*[@id="tbl_PlantNotes_wrapper"]//thead/tr/th'));
+        for ($f = 1; $f <= $fields; $f++){
+            $I->seeElement('//*[@id="tbl_PlantNotes_wrapper"]//thead/tr/th['.$f.']');
+
+            switch ($f){
+                case 1:
+                    $I->waitForText('Water Status');
+                    break;
+
+                case 2:
+                    $I->waitForText('Note');
+                    break;
+
+                case 3:
+                    $I->waitForText('PH Status.');
+                    break;
+
+                case 4:
+                    $I->waitForText('Note');
+                    break;
+
+                case 5:
+                    $I->waitForText('Sign Of');
+                    break;
+
+                case 6:
+                    $I->waitForText('Light Status');
+                    break;
+
+                case 7:
+                    $I->waitForText('Note');
+                    break;
+
+                case 8:
+                    $I->waitForText('General Notes');
+                    break;
+
+            }
+        }
+            $I->see('No data available in table', '//td[@class="dataTables_empty"]');
+            $I->seeElement('//div[@id="tbl_PlantNotes_wrapper"]/div[2]/div[2]/div//li[1][@class="prev disabled"]');
+            $I->seeElement('//div[@id="tbl_PlantNotes_wrapper"]/div[2]/div[2]/div//li[2][@class="next disabled"]');
+            $I->seeElement('//div[@id="tbl_PlantNotes_length"]/label/select');
+            $I->seeElement('//div[@id="tbl_PlantNotes_filter"]/label/input');
+            $I->seeElement('//div[@id="ShowNotesModal"]/div/button');
+            $I->click('//div[@id="ShowNotesModal"]/div/button');
+    }
+
+    public function getShowAssignedLots()
+    {
+        $I = $this;
+        $fields1 = count($I->grabMultiple('//*[@id="tbl_LotsByBatch"]/thead//th'));
+        for ($b = 1; $b <= $fields1; $b++) {
+            $I->seeElement('//*[@id="tbl_LotsByBatch"]/thead//th[' . $b . ']');
+
+            switch ($b) {
+                case 1:
+                    $I->waitForText('Lot No.');
+                    break;
+
+                case 2:
+                    $I->waitForText('Location');
+                    break;
+
+                case 3:
+                    $I->waitForText('Main Strain');
+                    break;
+
+                case 4:
+                    $I->waitForText('UOM');
+                    break;
+
+                case 5:
+                    $I->waitForText('Weight (grams)');
+                    break;
+
+                case 6:
+                    $I->waitForText('Type');
+                    break;
+
+                case 7:
+                    $I->waitForText('Created Date');
+                    break;
+
+            }
+        }
+            $I->see('No data available in table', '//td[@class="dataTables_empty"]');
+            $I->seeElement('//div[@id="tbl_LotsByBatch_wrapper"]/div[2]/div[2]/div//li[1][@class="prev disabled"]');
+            $I->seeElement('//div[@id="tbl_LotsByBatch_wrapper"]/div[2]/div[2]/div//li[2][@class="next disabled"]');
+            $I->seeElement('//div[@id="tbl_LotsByBatch_length"]/label/select');
+            $I->seeElement('//div[@id="tbl_LotsByBatch_filter"]/label/input');
+            $I->seeElement('//div[@id="ShowLotsModal"]/div/button');
+            $I->click('//div[@id="ShowLotsModal"]/div/button');
+            $I->wait(2);
+
     }
 
 

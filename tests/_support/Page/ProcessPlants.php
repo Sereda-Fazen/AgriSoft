@@ -29,6 +29,30 @@ class ProcessPlants
     // table
 
     public static $id = '//*[@id="tbl_PlantByBatch"]//tr[5]';
+
+    //plant ID and batch
+
+    public static $plantID = '//table[@id="tbl_PlantByBatch"]//tbody/tr[1]//td[3]//a';
+    public static $batch = '//table[@id="tbl_PlantByBatch"]//tbody/tr[1]//td[4]//a';
+
+    public static $plantForm = '//div[@id="ShowNotesModal"]';
+    public static $batchForm = '//div[@id="ShowLotsModal"]';
+
+
+    // Move Plants
+
+    public static $morePlants = '//*[@class="span4"]//input[1]';
+    public static $showPlantModal = '//*[@id="MovePlantModal"]';
+    public static $moveTo = '//select[@id="SubLocCode3"]';
+    public static $selectTray = '//select[@id="TrayId3"]';
+    public static $apply = '//*[@id="btnMovePlant"]';
+    public static $success = '//*[@id="saved"]';
+
+    // Develop
+
+    public static $develop = '';
+    public static $showForm = '';
+    
     
     public function __construct(\AcceptanceTester $I)
     {
@@ -54,8 +78,23 @@ class ProcessPlants
         $I->waitForElement(self::$plant);
     }
 
+    public function checkSelectFilter(){
+        $I = $this->tester;
+        $I->click(self::$selectAll);
+        $I->getVisibleText('Clone');
+        $I->getVisibleText('Vegetation');
+        $I->getVisibleText('Flowering');
+        $I->getVisibleText('Harvesting');
+        $I->getVisibleText('Drying');
+        $I->getVisibleText('Curing');
+        $I->getVisibleText('Developed');
+        $I->getVisibleText('Destroyed');
+        $I->waitForElement(self::$selectRoom);
+    }
+
     public function selectFilter($select){
         $I = $this->tester;
+        $I->waitForElement(self::$selectAll);
         $I->selectOption(self::$selectAll, $select);
         $I->getVisibleText($select);
         $I->waitForElement(self::$selectRoom);
@@ -72,6 +111,7 @@ class ProcessPlants
     public function checkScanBarcode($barcode)
     {
         $I = $this->tester;
+        $I->waitForElement(self::$clickScanBarcode);
         $I->click(self::$clickScanBarcode);
         $I->waitForElement(self::$visibleInputBarcode);
         $I->fillField(self::$visibleInputBarcode, $barcode);
@@ -80,17 +120,46 @@ class ProcessPlants
         $I->click(self::$showAllVisible);
         $I->wait(3);
     }
-/*
-    public function checkFitFieldsWithCutting($orderId)
-//,$plantId, $batch,$prodName,$UOM,$location,$tray,$stage,$wetW,$dryW,$stageDate,$harvestDate,$barcode,$RFID,$assigned,$fromBatch )
+
+    public function checkClickPlantId($plantID)
     {
         $I = $this->tester;
-        $I->wait(3);
-        $I->see($orderId,self::$id);
+        $I->seeLink($plantID, self::$plantID);
+        $I->click(self::$plantID);
+        $I->waitForElement(self::$plantForm);
+    }
+
+    public function checkClickBatch($batch)
+    {
+        $I = $this->tester;
+        $I->wait(2);
+        $I->seeLink($batch,self::$batch);
+        $I->click(self::$batch);
+        $I->waitForElement(self::$batchForm);
+    }
+
+
+    public function checkMorePlants($moveTo, $selectTray){
+        $I = $this->tester;
+        $I->waitForElement(self::$morePlants);
+        $I->click(self::$morePlants);
+        $I->waitForElementVisible(self::$showPlantModal);
+        $I->waitForElement(self::$apply);
+        $I->click(self::$apply);
+        $I->acceptPopup('Please Select Room First!');
+        $I->waitForElement(self::$moveTo);
+        $I->selectOption(self::$moveTo, $moveTo);
+        $I->getVisibleText($moveTo);
+        $I->click(self::$apply);
+        $I->acceptPopup('Please Select Try!');
+        $I->waitForElement(self::$selectTray);
+        $I->selectOption(self::$selectTray, $selectTray);
+        $I->getVisibleText($selectTray);
+        $I->click(self::$apply);
+        $I->waitForElement(self::$success);
+        $I->see('Plants moved successfully.', self::$success);
 
     }
-*/
-
 
    
 

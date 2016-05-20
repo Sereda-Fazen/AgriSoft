@@ -41,25 +41,52 @@ class TestCest
     }
 
     /**
-     * @param \Page\Cutting $cuttingPage
+     * @param \Page\ProcessPlants $processPlantsPage
      * @param AcceptanceTester $I
      * Check the Button Cutting and Navigate and show the Table
+     * @internal param \Page\ProcessPlants $cuttingPage
      */
 
-    function clickOnCutting (\Page\Cutting $cuttingPage, \AcceptanceTester $I){
-        $cuttingPage->clickCutting();
-   
+    function clickOnProcessPlants (\Page\ProcessPlants $processPlantsPage, \AcceptanceTester $I){
+        $processPlantsPage->clickProcessPlants();
+
     }
 
-    function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->searchNewQtyInPlantOrder();
+    function checkInvisibleBottoms (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I){
+        /**
+         * Invisible Show,Scan Barcode and Show the Table
+         */
+        $processPlantsPage->checkInvisibleBottoms();
+        $I->getShowPlant();
     }
-    function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
+
+    function selectFilter (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->searchQty('777');
+        /**
+         *  Show select room
+         */
+        $processPlantsPage->checkSelectFilter();
+        $processPlantsPage->selectFilter('Clone');
+
+        /**
+         *  Show Action
+         */
+
+        $I->getShowActionTable();
+
+        /**
+         * Select Clone in the filter
+         */
+
+        $processPlantsPage->selectRoom('Clone Room');
+
     }
-    function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->seeCompletedQtyPending('5','772');
+
+
+
+    function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
     }
     
 

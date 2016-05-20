@@ -65,6 +65,7 @@ class ProcessPlantsCest
         /**
          *  Show select room
          */
+        $processPlantsPage->checkSelectFilter();
         $processPlantsPage->selectFilter('Clone');
 
         /**
@@ -101,8 +102,55 @@ class ProcessPlantsCest
     function checkMatchFieldsWithCutting (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $I->getShowUserFromCutting();
-        //$processPlantsPage->checkFitFieldsWithCutting('5');
+      
     }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Plant ID
+     */
+
+
+    function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkClickPlantId('PL1615');
+        $I->getShowPlantNotes();
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Link Batch
+     */
+    function checkLinkBatch (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkClickBatch('Test123');
+        $I->getShowAssignedLots();
+
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check More Plants
+     */
+
+    function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
+    }
+
+    function checkNewRoom (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123');
+
+    }
+
+
+
 
 
 
