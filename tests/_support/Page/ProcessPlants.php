@@ -380,10 +380,11 @@ class ProcessPlants
 
         $I->fillField(self::$plantQty, '12');
         $I->getVisibleText('12');
-        $I->fillField(self::$assignedPlant,'bW');
+        $I->fillField(self::$assignedPlant,'BW1');
+        /*
         $I->waitForElement(self::$selectionName);
         $I->click(self::$selectionName);
-
+*/
         // next 3
 
         $I->waitForElement(self::$test123);
