@@ -337,6 +337,7 @@ class Cutting
         $I->seeElement(self::$generateBarcode);
         $I->click(self::$barcode);
         $I->waitForElement(self::$showBarcode);
+        $I->waitForElement(self::$fiveFields);
         $I->seeElement(self::$fiveFields);
         $I->click(self::$close);
         $I->waitForElement(self::$barcode);
