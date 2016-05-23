@@ -297,6 +297,7 @@ class ProcessPlants
     public function checkAddNotes(){
         $I = $this->tester;
 
+        $I->click(self::$randomCheckBox);
         $I->waitForElement(self::$addNotes);
         $I->click(self::$addNotes);
         $I->waitForElement(self::$showFormAddNotes);
@@ -332,20 +333,19 @@ class ProcessPlants
         $I->fillField(self::$textArea, 'Test Notes for Plants');
         $I->waitForElement(self::$approveNotes);
         $I->click(self::$approveNotes);
-        $I->wait(3);
-        /*
+
         $I->waitForElement(self::$success);
         $I->see('Notes Added to Plant(s).', self::$success);
         $I->click(self::$close);
-        */
+
 
     }
 
     public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
 
-        $I->waitForElement(self::$clickCancelAllCheckbox);
-        $I->click(self::$clickCancelAllCheckbox);
+        //$I->waitForElement(self::$clickCancelAllCheckbox);
+        //$I->click(self::$clickCancelAllCheckbox);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->acceptPopup('Please select at least one plant.');
