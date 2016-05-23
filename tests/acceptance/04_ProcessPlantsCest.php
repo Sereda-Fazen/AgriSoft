@@ -204,12 +204,12 @@ class ProcessPlantsCest
      * Chreck Print
      * @internal param \Page\ProcessPlants $processPlantsPage
      */
-/*
+
     function checkPrint ( \Step\Acceptance\CultivationSteps $I)
     {
         $I->getNewWindowPrint();
     }
-*/
+
 
 
 
