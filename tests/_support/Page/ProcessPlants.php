@@ -63,8 +63,36 @@ class ProcessPlants
     public static $seeTableNumbers = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]';
     public static $seeQuantity = '//span[@id="confirmDestroy"]';
     public static $clickOnOne = '//div[@class="ui-keyboard-keyset ui-keyboard-keyset-default"]/button[7]';
+    public static $doNotSeeFiveString = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]';
 
+    //prune trim
 
+    public static $pruneTrim = '//*[@class="span4"]//input[5]';
+    public static $checkBox4 = '//table[@id="tbl_PlantByBatch"]//tbody/tr[4]//td[18]';
+    public static $showFormPrune = '//div[@id="TrimModal"]';
+    public static $approvePrune = '//input[@id="btnTrimOrder"]';
+    public static $yes = '//input[@name="destroyQ"]';
+    public static $seeTablePrune = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]';
+    public static $weasteW = '//input[@id="txtTrashWeight2"]';
+    public static $reasonPrune = '//input[@id="txtWasteNote2"]';
+    public static $butter = '//input[@id="txtAssignedTo"]';
+    public static $butter1 = '//input[@id="hdnAssignedItem"]';
+
+    // Add Notes
+
+    public static $addNotes = '//*[@class="span4"]//input[7]';
+    public static $showFormAddNotes = '//div[@id="NotesModal"]';
+
+    public static $short = '//input[@id="txtWaterNote"][@placeholder="Short Note"]';
+    public static $short1 = '//input[@id="txtPHNote"][@placeholder="Short Note"]';
+    public static $short2 = '//input[@id="txtLightNote"][@placeholder="Short Note"]';
+    public static $short3 = '//input[@id="txtSignOfNote"][@placeholder="Short Note"]';
+
+    public static $approveNotes = '//div[@id="NotesModal"]/div[3]/input';
+    public static $textArea = '//textarea[@id="txtNotes"][@placeholder="Long Notes for Plant(s)"]';
+    public static $statusPF = '//input[@name="chkPHStatus"][@value="Over"]';
+    public static $signOf = '//input[@name="chkSignOf"][@value="Herma"]';
+    public static $close = '#saved > div:nth-of-type(2) > span';
 
 
 
@@ -185,6 +213,7 @@ class ProcessPlants
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
         $I->see('Plants moved successfully.', self::$success);
+        $I->click(self::$close);
 
     }
 
@@ -204,9 +233,102 @@ class ProcessPlants
         $I->waitForElement(self::$reason);
         $I->fillField(self::$reason, 'Test');
         $I->getVisibleText('Test');
-     //   $I->click(self::$approve);
+        $I->waitForElement(self::$approve);
+        $I->click(self::$approve);
+        $I->waitForElement(self::$success);
+        $I->dontSee(self::$doNotSeeFiveString);
 
     }
+
+    public function checkPruneTrim(){
+        $I = $this->tester;
+        $I->waitForElement(self::$checkBox4);
+        $I->click(self::$checkBox4);
+        $I->waitForElement(self::$pruneTrim);
+        $I->click(self::$pruneTrim);
+        $I->waitForElement(self::$showFormPrune);
+        $I->getVisibleText('There are plant(s) selected for this operation');
+        $I->waitForText('Destroy Now');
+        $I->waitForText('Waste Weight');
+        $I->waitForText('Reasons/Notes');
+        $I->waitForText('Waste Assigned to');
+        $I->waitForElement(self::$approvePrune);
+        $I->waitForElement(self::$yes);
+        $I->click(self::$yes);
+        $I->waitForElement(self::$approvePrune);
+        $I->click(self::$approvePrune);
+        /*
+        $I->waitForElement(self::$seeTablePrune);
+        $I->fillField('Test', self::$weasteW);
+        $I->getVisibleText('');
+        */
+        $I->fillField(self::$weasteW,'123321');
+        $I->waitForElement(self::$approvePrune);
+        $I->click(self::$approvePrune);
+        $I->seeElement(self::$reasonPrune);
+        $I->fillField(self::$reasonPrune,'Reasons#Test1');
+        $I->waitForElement(self::$butter);
+        $I->fillField(self::$butter,'Butter - 1 lb');
+        $I->waitForElement(self::$approvePrune);
+        $I->click(self::$approvePrune);
+        $I->waitForElement(self::$success);
+        $I->see('Trim Destroyed Successfully.', self::$success);
+        $I->click(self::$close);
+
+    }
+
+    public function checkAddNotes(){
+        $I = $this->tester;
+
+        $I->waitForElement(self::$addNotes);
+        $I->click(self::$addNotes);
+        $I->waitForElement(self::$showFormAddNotes);
+        $I->getVisibleText('Adding Notes to Plant(s)');
+        $I->getVisibleText('Water Status');
+        $I->getVisibleText('Over');
+        $I->getVisibleText('Just Right');
+        $I->getVisibleText('Under');
+        $I->getVisibleText('Bugs');
+        $I->getVisibleText('Herma');
+        $I->getVisibleText('Mold');
+        $I->waitForElement(self::$short);
+        $I->waitForElement(self::$textArea);
+        $I->waitForElement(self::$approveNotes);
+        $I->getVisibleText('There are 0plant(s) selected.');
+
+        $I->waitForElement(self::$statusPF);
+        $I->click(self::$statusPF);
+        $I->waitForElement(self::$signOf);
+        $I->click(self::$signOf);
+
+        $I->fillField(self::$short, 'Test1');
+        $I->getVisibleText('Test1');
+
+
+        $I->getVisibleText('Test Notes for Plants');
+        $I->waitForElement(self::$approveNotes);
+        $I->click(self::$approveNotes);
+        $I->acceptPopup('Please add data to the required fields.');
+        $I->fillField(self::$short1, 'Test2');
+        $I->fillField(self::$short2, 'Test3');
+        $I->fillField(self::$short3, 'Test4');
+        $I->fillField(self::$textArea, 'Test Notes for Plants');
+        $I->waitForElement(self::$approveNotes);
+        $I->click(self::$approveNotes);
+        /*
+        $I->waitForElement(self::$success);
+        $I->see('Notes Added to Plant(s).', self::$success);
+        $I->click(self::$close);
+        */
+
+
+
+    }
+
+
+
+
+    
 
    
 

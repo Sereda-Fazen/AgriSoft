@@ -336,6 +336,19 @@ class CultivationSteps extends \AcceptanceTester
             $I->wait(2);
 
     }
+    
+
+    public function getNewWindowPrint() {
+        $I = $this;
+        $I->waitForElement('//*[@class="span4"]//input[6]');
+        $I->click('//*[@class="span4"]//input[6]');
+        $I->executeInSelenium(function (\Facebook\WebDriver\Remote\RemoteWebDriver $webdriver) {
+            $handles = $webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->switchToWindow();
+    }
 
 
 

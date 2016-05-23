@@ -160,6 +160,43 @@ class ProcessPlantsCest
         $processPlantsPage->checkDestroy();
     }
 
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Prune/Trim
+     */
+
+
+    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkPruneTrim();
+    }
+
+    /**
+     * @param Acceptance\CultivationSteps $I
+     * Chreck Print
+     * @internal param \Page\ProcessPlants $processPlantsPage
+     */
+
+/*
+    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
+    {
+
+        $I->getNewWindowPrint();
+    }
+*/
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Add Notes
+     */
+
+    function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkAddNotes();
+    }
+    
 
 
 
