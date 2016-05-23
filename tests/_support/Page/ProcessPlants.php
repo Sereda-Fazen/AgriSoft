@@ -48,11 +48,38 @@ class ProcessPlants
     public static $apply = '//*[@id="btnMovePlant"]';
     public static $success = '//*[@id="saved"]';
 
+
+    // Destroy
+
+
+    public static $clickCancelAllCheckbox = '//*[@id="chkSelectall"]';
+    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]//td[18]';
+    public static $destroy = '//*[@class="span4"]//input[4]';
+    public static $showFormDestroy = '//div[@id="DestroyModal"]';
+    public static $thereArePlants = '';
+    public static $wasteWeight = '';
+    public static $reason = '//input[@id="txtWasteNote"]';
+    public static $approve = '//div[@id="DestroyModal"]/div[3]/input';
+    public static $seeTableNumbers = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]';
+    public static $seeQuantity = '//span[@id="confirmDestroy"]';
+    public static $clickOnOne = '//div[@class="ui-keyboard-keyset ui-keyboard-keyset-default"]/button[7]';
+
+
+
+
+
+
+
+
+
+
+
+
     // Develop
 
     public static $develop = '';
     public static $showForm = '';
-    
+
     
     public function __construct(\AcceptanceTester $I)
     {
@@ -158,6 +185,26 @@ class ProcessPlants
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
         $I->see('Plants moved successfully.', self::$success);
+
+    }
+
+
+    public function checkDestroy(){
+        $I = $this->tester;
+        $I->waitForElement(self::$clickCancelAllCheckbox);
+        $I->click(self::$clickCancelAllCheckbox);
+        $I->click(self::$checkBox);
+        $I->waitForElement(self::$destroy);
+        $I->click(self::$destroy);
+        $I->waitForElement(self::$showFormDestroy);
+        $I->getVisibleText('There are 1plant(s) selected to be destroed');
+        $I->waitForElement(self::$approve);
+        $I->click(self::$approve);
+        $I->waitForElement(self::$seeTableNumbers);
+        $I->waitForElement(self::$reason);
+        $I->fillField(self::$reason, 'Test');
+        $I->getVisibleText('Test');
+     //   $I->click(self::$approve);
 
     }
 

@@ -84,9 +84,9 @@ class TestCest
 
 
 
-    function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
+        $processPlantsPage->checkDestroy();
     }
     
 
