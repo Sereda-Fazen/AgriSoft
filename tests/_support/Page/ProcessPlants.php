@@ -100,12 +100,9 @@ class ProcessPlants
 
 
 
-
-
-
     // Develop
 
-    public static $develop = '';
+    public static $develop = '//*[@class="span4"]//input[2]';
     public static $showForm = '';
 
     
@@ -315,14 +312,19 @@ class ProcessPlants
         $I->fillField(self::$textArea, 'Test Notes for Plants');
         $I->waitForElement(self::$approveNotes);
         $I->click(self::$approveNotes);
+        $I->wait(3);
         /*
         $I->waitForElement(self::$success);
         $I->see('Notes Added to Plant(s).', self::$success);
         $I->click(self::$close);
         */
 
+    }
 
-
+    public function checkDeploy(){
+        $I = $this->tester;
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
     }
 
 

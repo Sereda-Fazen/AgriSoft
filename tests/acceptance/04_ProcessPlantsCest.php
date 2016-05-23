@@ -196,7 +196,17 @@ class ProcessPlantsCest
     {
         $processPlantsPage->checkAddNotes();
     }
-    
+    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
+    {
+        $I->getNewWindowPrint();
+    }
+
+    function checkDeploy ( \Page\ProcessPlants $processPlants ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlants->checkDeploy();
+    }
+
+
 
 
 
