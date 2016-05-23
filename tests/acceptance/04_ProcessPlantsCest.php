@@ -172,19 +172,7 @@ class ProcessPlantsCest
         $processPlantsPage->checkPruneTrim();
     }
 
-    /**
-     * @param Acceptance\CultivationSteps $I
-     * Chreck Print
-     * @internal param \Page\ProcessPlants $processPlantsPage
-     */
-
-/*
-    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
-    {
-
-        $I->getNewWindowPrint();
-    }
-*/
+    
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage
@@ -196,17 +184,32 @@ class ProcessPlantsCest
     {
         $processPlantsPage->checkAddNotes();
     }
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlants
+     * @param Acceptance\CultivationSteps $I
+     * Check Deploy
+     */
+    
+    
+    function checkDeploy ( \Page\ProcessPlants $processPlants ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlants->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
+    }
+
+    /**
+     * @param Acceptance\CultivationSteps $I
+     * Chreck Print
+     * @internal param \Page\ProcessPlants $processPlantsPage
+     */
+/*
     function checkPrint ( \Step\Acceptance\CultivationSteps $I)
     {
         $I->getNewWindowPrint();
     }
-
-    function checkDeploy ( \Page\ProcessPlants $processPlants ,\Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlants->checkDeploy();
-    }
-
-
+*/
 
 
 

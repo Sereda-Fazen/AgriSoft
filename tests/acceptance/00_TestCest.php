@@ -140,7 +140,7 @@ class TestCest
     {
         $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
     }
-/*
+
     function checkNewRoom (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
 
@@ -154,25 +154,60 @@ class TestCest
      * @param Acceptance\CultivationSteps $I
      * Check Destroy
      */
+/*
+    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDestroy();
+    }
+*/
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Prune/Trim
+     */
+/*
 
+    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkPruneTrim();
+    }
+*/
 
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage
      * @param Acceptance\CultivationSteps $I
-     * Chreck Print
+     * Check Add Notes
      */
-
-
-    function checkPrint (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $I->getNewWindowPrint();
-    }
-
+/*
     function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkAddNotes();
     }
+*/
+    /**
+     * @param Acceptance\CultivationSteps $I
+     * Chreck Print
+     * @internal param \Page\ProcessPlants $processPlantsPage
+     */
+/*
+    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
+    {
+        $I->getNewWindowPrint();
+    }
+*/
+    /**
+     * @param \Page\ProcessPlants $processPlants
+     * @param Acceptance\CultivationSteps $I
+     * Check Deploy
+     */
+
+
+    function checkDeploy ( \Page\ProcessPlants $processPlants ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlants->checkDeploy();
+    }
+
 
 
 

@@ -60,9 +60,10 @@ class ProcessPlants
     public static $wasteWeight = '';
     public static $reason = '//input[@id="txtWasteNote"]';
     public static $approve = '//div[@id="DestroyModal"]/div[3]/input';
-    public static $seeTableNumbers = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]';
+    public static $seeTableNumbers = '//div[@class="ui-keyboard-keyset ui-keyboard-keyset-default"]';
     public static $seeQuantity = '//span[@id="confirmDestroy"]';
     public static $clickOnOne = '//div[@class="ui-keyboard-keyset ui-keyboard-keyset-default"]/button[7]';
+    public static $clickAgreeNum = '//div[@class="ui-keyboard-keyset ui-keyboard-keyset-default"]/button[14]';
     public static $doNotSeeFiveString = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]';
 
     //prune trim
@@ -102,8 +103,23 @@ class ProcessPlants
 
     // Develop
 
+    public static $randomCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[3]/td[18]';
     public static $develop = '//*[@class="span4"]//input[2]';
-    public static $showForm = '';
+    public static $showFormDevelop = '//div[@id="DevelopModal"]';
+    public static $selectUser = '//select[@id="UserId2"]';
+    public static $test123 = '//input[@id="txtNewBatchNo"][@placeholder]';
+    public static $yesDeploy = '//input[@id="chkSellable"]';
+    public static $plantQty = '//input[@id="txtDryWeight"][@placeholder="In Grams Only"]';
+    public static $assignedPlant = '//input[@id="txtDryItem"][@placeholder]';
+    public static $selectionName = '//a[@id="ui-id-63"]';
+
+    public static $skanTrayBatch = '//input[@id="trayBarcode4"]';
+    public static $moveToDevelop = '//select[@id="SubLocCode4"]';
+    public static $trayDevelop = '//select[@id="TrayId4"]';
+
+    public static $applyChanges = '//div[@id="DevelopModal"]//div[3]/input[3]';
+
+
 
     
     public function __construct(\AcceptanceTester $I)
@@ -227,12 +243,16 @@ class ProcessPlants
         $I->waitForElement(self::$approve);
         $I->click(self::$approve);
         $I->waitForElement(self::$seeTableNumbers);
+        $I->click(self::$clickOnOne);
+        $I->click(self::$clickAgreeNum);
         $I->waitForElement(self::$reason);
         $I->fillField(self::$reason, 'Test');
         $I->getVisibleText('Test');
         $I->waitForElement(self::$approve);
         $I->click(self::$approve);
         $I->waitForElement(self::$success);
+        $I->see('Plants destroyed.', self::$success);
+        $I->click(self::$close);
         $I->dontSee(self::$doNotSeeFiveString);
 
     }
@@ -321,10 +341,74 @@ class ProcessPlants
 
     }
 
-    public function checkDeploy(){
+    public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
+
+        $I->waitForElement(self::$clickCancelAllCheckbox);
+        $I->click(self::$clickCancelAllCheckbox);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
+        $I->acceptPopup('Please select at least one plant.');
+        $I->click(self::$randomCheckBox);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        //next
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+
+        $I->click(self::$yesDeploy);
+        $I->getVisibleText('Plant Qty.');
+        $I->waitForElement(self::$plantQty);
+        $I->getVisibleText('Assign Plant Stock to Item');
+        $I->waitForElement(self::$assignedPlant);
+
+        //next 2
+
+        $I->fillField(self::$plantQty, '12');
+        $I->getVisibleText('12');
+        $I->fillField(self::$assignedPlant,'bW');
+        $I->waitForElement(self::$selectionName);
+        $I->click(self::$selectionName);
+
+        // next 3
+
+        $I->waitForElement(self::$test123);
+        $I->fillField(self::$test123, 'TEST');
+        $I->getVisibleText('TEST');
+        $I->wait(2);
+        $I->fillField(self::$skanTrayBatch,$newBatch);
+        $I->getVisibleText($newBatch);
+        $I->getVisibleText('Test12345');
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop );
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop );
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+        //final
+        $I->waitForElement(self::$applyChanges);
+        $I->click(self::$applyChanges);
+/*
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+*/
+
+
     }
 
 
