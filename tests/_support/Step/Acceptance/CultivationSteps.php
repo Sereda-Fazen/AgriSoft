@@ -340,6 +340,7 @@ class CultivationSteps extends \AcceptanceTester
 
     public function getNewWindowPrint() {
         $I = $this;
+        $I->wait(3);
         $I->waitForElement('//*[@class="span4"]//input[6]');
         $I->click('//*[@class="span4"]//input[6]');
         $I->executeInSelenium(function (\Facebook\WebDriver\Remote\RemoteWebDriver $webdriver) {

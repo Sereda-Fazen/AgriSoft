@@ -103,15 +103,16 @@ class ProcessPlants
 
     // Develop
 
-    public static $randomCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[3]/td[18]';
+    public static $randomCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[4]/td[18]';
     public static $develop = '//*[@class="span4"]//input[2]';
     public static $showFormDevelop = '//div[@id="DevelopModal"]';
     public static $selectUser = '//select[@id="UserId2"]';
     public static $test123 = '//input[@id="txtNewBatchNo"][@placeholder]';
     public static $yesDeploy = '//input[@id="chkSellable"]';
     public static $plantQty = '//input[@id="txtDryWeight"][@placeholder="In Grams Only"]';
-    public static $assignedPlant = '//input[@id="txtDryItem"][@placeholder]';
-    public static $selectionName = '//a[@id="ui-id-63"]';
+    public static $dryItem = '//*[@id="txtDryItem"]';
+    public static $assignedPlant = '//ul[@class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"]/li/a[@class="ui-corner-all"]';
+
 
     public static $skanTrayBatch = '//input[@id="trayBarcode4"]';
     public static $moveToDevelop = '//select[@id="SubLocCode4"]';
@@ -119,6 +120,10 @@ class ProcessPlants
 
     public static $applyChanges = '//div[@id="DevelopModal"]//div[3]/input[3]';
 
+    //CHECK new developed
+
+    public static $newDepCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[18]';
+    public static $newBatch = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[4]';
 
 
     
@@ -374,17 +379,17 @@ class ProcessPlants
         $I->getVisibleText('Plant Qty.');
         $I->waitForElement(self::$plantQty);
         $I->getVisibleText('Assign Plant Stock to Item');
-        $I->waitForElement(self::$assignedPlant);
+        $I->waitForElement(self::$dryItem);
 
         //next 2
 
         $I->fillField(self::$plantQty, '12');
         $I->getVisibleText('12');
-        $I->fillField(self::$assignedPlant,'BW1');
-        /*
-        $I->waitForElement(self::$selectionName);
-        $I->click(self::$selectionName);
-*/
+        $I->waitForElement(self::$dryItem);
+        $I->fillField(self::$dryItem, 'BW1');
+
+        $I->getVisibleText('BW1');
+
         // next 3
 
         $I->waitForElement(self::$test123);
@@ -403,12 +408,18 @@ class ProcessPlants
         //final
         $I->waitForElement(self::$applyChanges);
         $I->click(self::$applyChanges);
-/*
+
         $I->waitForElement(self::$success);
         $I->see('Plants developed and shifted to next stage.', self::$success);
         $I->click(self::$close);
-*/
 
+    }
+
+    public function checkNewDeployed($newBatch){
+        $I = $this->tester;
+        $I->waitForElement(self::$newDepCheckBox);
+        $I->waitForElement(self::$newBatch);
+        $I->getVisibleText($newBatch);
 
     }
 
