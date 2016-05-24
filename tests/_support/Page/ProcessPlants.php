@@ -215,6 +215,9 @@ class ProcessPlants
 
     public function checkMorePlants($moveTo, $selectTray){
         $I = $this->tester;
+        $I->waitForElement(self::$clickCancelAllCheckbox);
+        //$I->click(self::$clickCancelAllCheckbox);
+        $I->click(self::$checkBox);
         $I->waitForElement(self::$morePlants);
         $I->click(self::$morePlants);
         $I->waitForElementVisible(self::$showPlantModal);
@@ -232,7 +235,8 @@ class ProcessPlants
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
         $I->see('Plants moved successfully.', self::$success);
-        $I->wait(2);
+
+        $I->click(self::$close);
 
 
     }
@@ -388,7 +392,8 @@ class ProcessPlants
 
         $I->waitForElement(self::$dryItem);
         $I->fillField(self::$dryItem, 'Wh');
-        $I->waitForElementVisible(self::$assignedPlant);
+        $I->waitForElement(self::$assignedPlant);
+        $I->waitForElement(self::$assignedPlant2);
         $I->click(self::$assignedPlant2);
 
         $I->waitForElement(self::$plantQty);
