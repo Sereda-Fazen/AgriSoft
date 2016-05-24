@@ -356,8 +356,8 @@ class ProcessPlants
     public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
 
-        //$I->waitForElement(self::$clickCancelAllCheckbox);
-        //$I->click(self::$clickCancelAllCheckbox);
+        $I->waitForElement(self::$clickCancelAllCheckbox);
+        $I->click(self::$clickCancelAllCheckbox);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->acceptPopup('Please select at least one plant.');

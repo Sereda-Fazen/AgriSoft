@@ -72,7 +72,7 @@ class TestCest
          *  Show Action
          */
 
-        $I->getShowActionTable();
+       // $I->getShowActionTable();
 
         /**
          * Select Clone in the filter
@@ -82,57 +82,12 @@ class TestCest
 
     }
 
-
-
-   
-
-    function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    function checkScanBarcode (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
-    }
-
-    function checkNewRoom (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-
-        $processPlantsPage->selectFilter('Cure Room');
+        /**
+         * Click and enter Code
+         */
         $processPlantsPage->checkScanBarcode('Test123');
-
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Destroy
-     */
-
-    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkDestroy();
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Prune/Trim
-     */
-
-
-    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkPruneTrim();
-    }
-
-
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Add Notes
-     */
-
-    function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkAddNotes();
     }
 
 
@@ -152,16 +107,7 @@ class TestCest
         $processPlantsPage->checkNewDeployed('Test123_TEST');
     }
 
-    /**
-     * @param Acceptance\CultivationSteps $I
-     * Chreck Print
-     * @internal param \Page\ProcessPlants $processPlantsPage
-     */
 
-    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
-    {
-        $I->getNewWindowPrint();
-    }
 
 
 
