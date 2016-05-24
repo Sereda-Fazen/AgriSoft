@@ -216,7 +216,7 @@ class ProcessPlants
     public function checkMorePlants($moveTo, $selectTray){
         $I = $this->tester;
         $I->waitForElement(self::$clickCancelAllCheckbox);
-        //$I->click(self::$clickCancelAllCheckbox);
+        $I->click(self::$clickCancelAllCheckbox);
         $I->click(self::$checkBox);
         $I->waitForElement(self::$morePlants);
         $I->click(self::$morePlants);
