@@ -231,6 +231,7 @@ class ProcessPlants
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
         $I->see('Plants moved successfully.', self::$success);
+        $I->wait(2);
         $I->click(self::$close);
 
     }

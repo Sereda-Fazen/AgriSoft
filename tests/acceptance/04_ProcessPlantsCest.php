@@ -114,7 +114,7 @@ class ProcessPlantsCest
 
     function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkClickPlantId('PL1615');
+        $processPlantsPage->checkClickPlantId('PL16');
         $I->getShowPlantNotes();
     }
 
