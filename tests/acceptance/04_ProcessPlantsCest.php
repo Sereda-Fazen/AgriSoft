@@ -130,6 +130,18 @@ class ProcessPlantsCest
 
     }
 
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Destroy
+     */
+
+    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDestroy();
+    }
+
     /**
      * @param \Page\ProcessPlants $processPlantsPage
      * @param Acceptance\CultivationSteps $I
@@ -149,16 +161,7 @@ class ProcessPlantsCest
 
     }
 
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Destroy
-     */
-
-    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkDestroy();
-    }
+   
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage

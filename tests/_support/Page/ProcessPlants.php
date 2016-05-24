@@ -68,6 +68,7 @@ class ProcessPlants
 
     //prune trim
 
+    public static $checkBox2 = '//table[@id="tbl_PlantByBatch"]//tbody/tr[4]//td[18]';
     public static $pruneTrim = '//*[@class="span4"]//input[5]';
     public static $checkBox4 = '//table[@id="tbl_PlantByBatch"]//tbody/tr[4]//td[18]';
     public static $showFormPrune = '//div[@id="TrimModal"]';
@@ -217,7 +218,7 @@ class ProcessPlants
         $I = $this->tester;
         $I->waitForElement(self::$clickCancelAllCheckbox);
         $I->click(self::$clickCancelAllCheckbox);
-        $I->click(self::$checkBox);
+        $I->click(self::$checkBox2);
         $I->waitForElement(self::$morePlants);
         $I->click(self::$morePlants);
         $I->waitForElementVisible(self::$showPlantModal);
