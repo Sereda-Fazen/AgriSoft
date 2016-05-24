@@ -111,7 +111,8 @@ class ProcessPlants
     public static $yesDeploy = '//input[@id="chkSellable"]';
     public static $plantQty = '//input[@id="txtDryWeight"][@placeholder="In Grams Only"]';
     public static $dryItem = '//*[@id="txtDryItem"]';
-    public static $assignedPlant = '//ul[@class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"]/li/a[@class="ui-corner-all"]';
+    public static $assignedPlant = 'ul.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all';
+    public static $assignedPlant2 = 'ul.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all > li:first-child > a.ui-corner-all';
 
 
     public static $skanTrayBatch = '//input[@id="trayBarcode4"]';
@@ -232,7 +233,7 @@ class ProcessPlants
         $I->waitForElement(self::$success);
         $I->see('Plants moved successfully.', self::$success);
         $I->wait(2);
-        $I->click(self::$close);
+
 
     }
 
@@ -384,12 +385,15 @@ class ProcessPlants
 
         //next 2
 
+
+        $I->waitForElement(self::$dryItem);
+        $I->fillField(self::$dryItem, 'Wh');
+        $I->waitForElementVisible(self::$assignedPlant);
+        $I->click(self::$assignedPlant2);
+
+        $I->waitForElement(self::$plantQty);
         $I->fillField(self::$plantQty, '12');
         $I->getVisibleText('12');
-        $I->waitForElement(self::$dryItem);
-        $I->fillField(self::$dryItem, 'BW1');
-
-        $I->getVisibleText('BW1');
 
         // next 3
 

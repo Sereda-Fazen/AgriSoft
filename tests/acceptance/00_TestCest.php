@@ -84,57 +84,7 @@ class TestCest
 
 
 
-    function checkScanBarcode (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        /**
-         * Click and enter Code
-         */
-        $processPlantsPage->checkScanBarcode('Test123');
-    }
-
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check match table with the table in cutting
-     */
-
-    function checkMatchFieldsWithCutting (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $I->getShowUserFromCutting();
-
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Plant ID
-     */
-
-
-    function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkClickPlantId('PL1615');
-        $I->getShowPlantNotes();
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Link Batch
-     */
-    function checkLinkBatch (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkClickBatch('Test123');
-        $I->getShowAssignedLots();
-
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check More Plants
-     */
+   
 
     function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
@@ -154,24 +104,24 @@ class TestCest
      * @param Acceptance\CultivationSteps $I
      * Check Destroy
      */
-/*
+
     function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkDestroy();
     }
-*/
+
     /**
      * @param \Page\ProcessPlants $processPlantsPage
      * @param Acceptance\CultivationSteps $I
      * Check Prune/Trim
      */
-/*
+
 
     function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkPruneTrim();
     }
-*/
+
 
 
     /**
@@ -179,33 +129,38 @@ class TestCest
      * @param Acceptance\CultivationSteps $I
      * Check Add Notes
      */
-/*
+
     function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkAddNotes();
     }
-*/
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Deploy
+     * @internal param \Page\ProcessPlants $processPlants
+     */
+
+
+    function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123_TEST');
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
     /**
      * @param Acceptance\CultivationSteps $I
      * Chreck Print
      * @internal param \Page\ProcessPlants $processPlantsPage
      */
-/*
+
     function checkPrint ( \Step\Acceptance\CultivationSteps $I)
     {
         $I->getNewWindowPrint();
-    }
-*/
-    /**
-     * @param \Page\ProcessPlants $processPlants
-     * @param Acceptance\CultivationSteps $I
-     * Check Deploy
-     */
-
-
-    function checkDeploy ( \Page\ProcessPlants $processPlants ,\Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlants->checkDeploy();
     }
 
 
