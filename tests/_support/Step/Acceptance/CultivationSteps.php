@@ -212,7 +212,7 @@ class CultivationSteps extends \AcceptanceTester
                     break;
 
                 case 14:
-                    $I->waitForText('BL1161');
+                    $I->waitForText('BL11');
                     break;
 
                 case 15:
