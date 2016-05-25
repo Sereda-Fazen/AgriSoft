@@ -196,7 +196,7 @@ class ProcessPlantsCest
     
     function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
+        $processPlantsPage->checkDeploy('White Widow','Test123_TEST', 'Cure Room', 'Curing Rack 1');
         $processPlantsPage->selectFilter('Cure Room');
         $processPlantsPage->checkScanBarcode('Test123_TEST');
         $processPlantsPage->checkNewDeployed('Test123_TEST');

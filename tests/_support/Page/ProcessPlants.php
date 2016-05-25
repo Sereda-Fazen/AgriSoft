@@ -352,7 +352,7 @@ class ProcessPlants
 
     }
 
-    public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
+    public function checkDeploy($widow,$newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
 
         $I->waitForElement(self::$develop);
@@ -388,10 +388,10 @@ class ProcessPlants
 
 
         $I->waitForElement(self::$dryItem);
-        $I->fillField(self::$dryItem, 'Wh');
-        $I->waitForElementVisible(self::$assignedPlant);
-        $I->waitForElementVisible(self::$assignedPlant2);
-        $I->click(self::$assignedPlant2);
+        $I->fillField(self::$dryItem, 'White');
+        $I->waitForElement(self::$assignedPlant);
+        $I->waitForText($widow);
+        $I->click($widow);
 
         $I->waitForElement(self::$plantQty);
         $I->fillField(self::$plantQty, '12');
