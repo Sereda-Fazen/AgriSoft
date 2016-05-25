@@ -193,7 +193,6 @@ class ProcessPlants
         //$I->click(self::$clickScanBarcode);
         //$I->waitForElement(self::$showAllVisible,20);
         $I->click(self::$showAllVisible);
-        $I->wait(3);
     }
 
     public function checkClickPlantId($plantID)
