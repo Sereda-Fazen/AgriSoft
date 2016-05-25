@@ -199,7 +199,7 @@ class ProcessPlantsCest
         $processPlantsPage->checkDeploy('White Widow', 'Test123_TEST', 'Cure Room', 'Curing Rack 1');
     }
 
-    function checkNewBarcode ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->selectRoom('Vegetation');
     }

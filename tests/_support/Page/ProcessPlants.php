@@ -183,7 +183,7 @@ class ProcessPlants
         $I->waitForElement(self::$seeTable, 20);
     }
 
-    
+
     public function checkScanBarcode($barcode)
     {
         $I = $this->tester;
@@ -424,7 +424,6 @@ class ProcessPlants
 
     public function checkNewDeployed($newBatch){
         $I = $this->tester;
-        $I->waitForElement(self::$newDepCheckBox);
         $I->waitForElement(self::$newBatch);
         $I->getVisibleText($newBatch);
 
