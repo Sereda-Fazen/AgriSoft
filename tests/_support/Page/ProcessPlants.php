@@ -127,6 +127,14 @@ class ProcessPlants
     public static $newDepCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[18]';
     public static $newBatch = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[4]';
 
+    // vegetation
+
+    public static $stage = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[9]';
+    public static $tablePlant = '//*[@id="tbl_PlantNotes"]/tbody';
+    public static $closePlant = '//div[@id="ShowNotesModal"]/div/button';
+    public static $reverse = '//*[@class="span4"]//input[3]';
+    public static $reverseBatch = '//*[@id="divPlantByBatch"]//tr[4]';
+    public static $checkBoxReverse = '//*[@id="divPlantByBatch"]//tr[4]/td[18]';
 
     
     public function __construct(\AcceptanceTester $I)
@@ -353,7 +361,7 @@ class ProcessPlants
 
     }
 
-    public function checkDeploy($widow,$newBatch ,$moveToDevelop, $trayDevelop){
+    public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
         $I->waitForElement(self::$clickCancelAllCheckbox);
         //$I->click(self::$clickCancelAllCheckbox);
@@ -432,6 +440,85 @@ class ProcessPlants
 
     }
 
+    public function checkVegetation($plantID){
+        $I = $this->tester;
+        $I->waitForElement(self::$stage);
+        $I->getVisibleText('Vegetation');
+        self::checkClickPlantId($plantID);
+        $I->waitForElement(self::$tablePlant);
+        $I->getVisibleText('Test');
+        $I->getVisibleText('O');
+        $I->getVisibleText('Test2');
+        $I->getVisibleText('H');
+        $I->getVisibleText('Test3');
+        $I->getVisibleText('Test Notes for Plant');
+        $I->click(self::$closePlant);
+        $I->waitForElement(self::$newDepCheckBox);
+        $I->click(self::$newDepCheckBox);
+        $I->waitForElement(self::$reverse);
+        $I->click(self::$reverse);
+        $I->waitForElement(self::$success);
+        $I->see('Stage Reversed Successfully.',self::$success);
+        $I->click(self::$close);
+        
+    }
+
+    public function checkReverse($newBatch)
+    {
+        $I = $this->tester;
+        $I->waitForElement(self::$reverseBatch);
+        $I->getVisibleText($newBatch);
+    }
+
+/*
+        $I->click(self::$checkBoxReverse);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        //next
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+        $I->click(self::$yesDeploy);
+        $I->getVisibleText('Plant Qty.');
+        $I->waitForElement(self::$plantQty);
+        $I->getVisibleText('Assign Plant Stock to Item');
+        $I->waitForElement(self::$dryItem);
+        $I->waitForElement(self::$test123);
+        $I->fillField(self::$test123, 'TEST');
+        $I->getVisibleText('TEST');
+        $I->getVisibleText('Test123_TEST_TEST');
+        $I->wait(2);
+        $I->fillField(self::$skanTrayBatch,$newBatch);
+        $I->getVisibleText($newBatch);
+        $I->getVisibleText('Test12345');
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop );
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop );
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+        //final
+        $I->waitForElement(self::$applyChanges);
+        $I->click(self::$applyChanges);
+
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+    }
+*/
 
 
 

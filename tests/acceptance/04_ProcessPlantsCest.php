@@ -196,10 +196,10 @@ class ProcessPlantsCest
     
     function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkDeploy('White Widow', 'Test123_TEST', 'Cure Room', 'Curing Rack 1');
+        $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
     }
 
-    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function selectVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->selectRoom('Vegetation');
     }
@@ -219,6 +219,18 @@ class ProcessPlantsCest
     {
         $I->getNewWindowPrint();
     }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Vegetation
+     */
+    
+    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkVegetation('PL16');
+    }
+
 
 
 
