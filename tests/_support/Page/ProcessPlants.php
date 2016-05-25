@@ -456,11 +456,12 @@ class ProcessPlants
         $I->waitForElement(self::$newDepCheckBox);
         $I->click(self::$newDepCheckBox);
         $I->waitForElement(self::$reverse);
+        /*
         $I->click(self::$reverse);
         $I->waitForElement(self::$success);
         $I->see('Stage Reversed Successfully.',self::$success);
         $I->click(self::$close);
-        
+        */
     }
 
     public function checkReverse($newBatch)
