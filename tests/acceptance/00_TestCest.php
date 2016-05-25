@@ -148,27 +148,38 @@ class TestCest
         $processPlantsPage->checkScanBarcode('Test123');
 
     }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Destroy
-     */
-
-
-
-
-    function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    /*
+    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
-        $processPlantsPage->selectFilter('Cure Room');
-        $processPlantsPage->checkScanBarcode('Test123_TEST');
-        $processPlantsPage->checkNewDeployed('Test123_TEST');
+        $processPlantsPage->checkDestroy();
     }
 
 
+    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkPruneTrim();
+    }
 
+    function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkAddNotes();
+    }
+*/
 
+    function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDeploy('White Widow', 'Test123_TEST', 'Cure Room', 'Curing Rack 1');
+    }
+
+    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoom('Vegetation');
+    }
+
+    function checkFindNewDeployed ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
 
 
 

@@ -53,7 +53,7 @@ class ProcessPlants
 
 
     public static $clickCancelAllCheckbox = '//*[@id="chkSelectall"]';
-    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]//td[18]';
+    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[3]//td[18]';
     public static $destroy = '//*[@class="span4"]//input[4]';
     public static $showFormDestroy = '//div[@id="DestroyModal"]';
     public static $thereArePlants = '';
@@ -237,6 +237,7 @@ class ProcessPlants
         $I->waitForElement(self::$success);
         //$I->see('Plants moved successfully.', self::$success);
        // $I->click(self::$close);
+        $I->click(self::$clickScanBarcode);
 
 
     }
@@ -354,7 +355,8 @@ class ProcessPlants
 
     public function checkDeploy($widow,$newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
-
+        $I->waitForElement(self::$clickCancelAllCheckbox);
+        $I->click(self::$clickCancelAllCheckbox);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->acceptPopup('Please select at least one plant.');
@@ -386,7 +388,7 @@ class ProcessPlants
 
         //next 2
 
-
+/*
         $I->waitForElement(self::$dryItem);
         $I->fillField(self::$dryItem, 'White');
         $I->waitForElement(self::$assignedPlant);
@@ -396,12 +398,13 @@ class ProcessPlants
         $I->waitForElement(self::$plantQty);
         $I->fillField(self::$plantQty, '12');
         $I->getVisibleText('12');
-
+*/
         // next 3
 
         $I->waitForElement(self::$test123);
         $I->fillField(self::$test123, 'TEST');
         $I->getVisibleText('TEST');
+        $I->getVisibleText('Test123_TEST');
         $I->wait(2);
         $I->fillField(self::$skanTrayBatch,$newBatch);
         $I->getVisibleText($newBatch);
