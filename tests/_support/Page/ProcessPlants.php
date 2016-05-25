@@ -183,6 +183,7 @@ class ProcessPlants
         $I->waitForElement(self::$seeTable, 20);
     }
 
+    
     public function checkScanBarcode($barcode)
     {
         $I = $this->tester;

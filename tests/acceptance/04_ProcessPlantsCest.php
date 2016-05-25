@@ -201,8 +201,7 @@ class ProcessPlantsCest
 
     function checkNewBarcode ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->selectFilter('Cure Room');
-        $processPlantsPage->checkScanBarcode('Test123_TEST');
+        $processPlantsPage->selectRoom('Vegetation');
     }
 
     function checkFindNewDeployed ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
