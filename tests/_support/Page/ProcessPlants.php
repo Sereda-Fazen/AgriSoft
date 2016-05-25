@@ -236,7 +236,7 @@ class ProcessPlants
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
         //$I->see('Plants moved successfully.', self::$success);
-        $I->click(self::$close);
+       // $I->click(self::$close);
 
 
     }
@@ -355,8 +355,6 @@ class ProcessPlants
     public function checkDeploy($newBatch ,$moveToDevelop, $trayDevelop){
         $I = $this->tester;
 
-        $I->waitForElement(self::$clickCancelAllCheckbox);
-        $I->click(self::$clickCancelAllCheckbox);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->acceptPopup('Please select at least one plant.');
@@ -380,7 +378,6 @@ class ProcessPlants
 
         $I->selectOption(self::$selectUser, 'Vanya Buvac');
         $I->getVisibleText('Vanya Buvac');
-
         $I->click(self::$yesDeploy);
         $I->getVisibleText('Plant Qty.');
         $I->waitForElement(self::$plantQty);
@@ -392,8 +389,8 @@ class ProcessPlants
 
         $I->waitForElement(self::$dryItem);
         $I->fillField(self::$dryItem, 'Wh');
-        $I->waitForElement(self::$assignedPlant);
-        $I->waitForElement(self::$assignedPlant2);
+        $I->waitForElementVisible(self::$assignedPlant);
+        $I->waitForElementVisible(self::$assignedPlant2);
         $I->click(self::$assignedPlant2);
 
         $I->waitForElement(self::$plantQty);
