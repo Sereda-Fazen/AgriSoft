@@ -102,7 +102,7 @@ class ProcessPlantsCest
     function checkMatchFieldsWithCutting (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $I->getShowUserFromCutting();
-      
+
     }
 
     /**
@@ -172,7 +172,7 @@ class ProcessPlantsCest
         $processPlantsPage->checkPruneTrim();
     }
 
-    
+
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage
@@ -192,8 +192,8 @@ class ProcessPlantsCest
      * Check Deploy
      * @internal param \Page\ProcessPlants $processPlants
      */
-    
-    
+
+
     function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
@@ -209,23 +209,14 @@ class ProcessPlantsCest
         $processPlantsPage->checkNewDeployed('Test123_TEST');
     }
 
-    /**
-     * @param Acceptance\CultivationSteps $I
-     * Chreck Print
-     * @internal param \Page\ProcessPlants $processPlantsPage
-     */
 
-    function checkPrint ( \Step\Acceptance\CultivationSteps $I)
+
+
+    function selectVegetation2 ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $I->getNewWindowPrint();
+        $processPlantsPage->selectRoom('Vegetation');
+        $processPlantsPage->selectFilter('Cure Room');
     }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Vegetation
-     */
-
 
     function checkDeployForVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
