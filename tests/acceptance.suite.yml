@@ -29,10 +29,13 @@ modules:
 
             capabilities:
              browserstack.autoWait: 60
-             #browserstack.user: 'cadencewatch1'
-             #browserstack.key: 'RG12s8tJvQ9p3pZuxWzf'
-             browserstack.user: 'vladshalda1'
-             browserstack.key: 'vMqut6yLFsfbhDzhB643'
+           #  browserstack.user: 'cadencewatch1'
+            # browserstack.key: 'RG12s8tJvQ9p3pZuxWzf'
+             #browserstack.user: 'vladshalda1'
+             #browserstack.key: 'vMqut6yLFsfbhDzhB643'
+             browserstack.user: 'mahotoharada1'
+             browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
+
              resolution: 1920x1080
 
 
