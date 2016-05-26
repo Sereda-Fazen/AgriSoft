@@ -52,10 +52,167 @@ class TestCest
 
     }
 
+    function checkInvisibleBottoms (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I){
+        /**
+         * Invisible Show,Scan Barcode and Show the Table
+         */
+        $processPlantsPage->checkInvisibleBottoms();
+        $I->getShowPlant();
+    }
+
+    function selectFilter (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         *  Show select room
+         */
+        $processPlantsPage->checkSelectFilter();
+        $processPlantsPage->selectFilter('Clone');
+
+        /**
+         *  Show Action
+         */
+
+        $I->getShowActionTable();
+
+        /**
+         * Select Clone in the filter
+         */
+
+        $processPlantsPage->selectRoom('Clone Room');
+
+    }
 
 
+
+    function checkScanBarcode (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         * Click and enter Code
+         */
+        $processPlantsPage->checkScanBarcode('Test123');
+    }
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check match table with the table in cutting
+     */
+
+    function checkMatchFieldsWithCutting (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $I->getShowUserFromCutting();
+
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Plant ID
+     */
+
+
+    function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkClickPlantId('PL16');
+        $I->getShowPlantNotes();
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Link Batch
+     */
+    function checkLinkBatch (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkClickBatch('Test123');
+        $I->getShowAssignedLots();
+
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check More Plants
+     */
+
+    function checkMorePlants (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkMorePlants('Cure Room', 'Curing Rack 1');
+    }
+
+    function checkNewRoom (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123');
+
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Destroy
+     */
+
+    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDestroy();
+    }
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Prune/Trim
+     */
+
+
+    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkPruneTrim();
+    }
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Add Notes
+     */
+
+    function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkAddNotes();
+    }
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * Check Deploy
+     * @internal param \Page\ProcessPlants $processPlants
+     */
+
+
+    function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
+    }
 
     function selectVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoom('Vegetation');
+    }
+
+    function checkFindNewDeployed ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
+
+
+
+    function selectVegetation2 ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->selectRoom('Vegetation');
         $processPlantsPage->selectFilter('Cure Room');

@@ -182,7 +182,7 @@ class ProcessPlants
         $I->selectOption(self::$selectAll, $select);
         $I->getVisibleText($select);
         $I->waitForElement(self::$selectRoom);
-        $I->click(self::$showAllVisible);
+        //$I->click(self::$showAllVisible);
     }
 
     public function selectRoom($selectRoom){
