@@ -124,7 +124,8 @@ class ProcessPlants
 
     //CHECK new developed
 
-    public static $newDepCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[18]';
+    public static $newDepCheckBox = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[18]/input';
+    public static $clickCheckBox = '//*[@id="chkSelectall"]';
     public static $newBatch = '//*[@id="tbl_PlantByBatch"]/tbody/tr[1]/td[4]';
 
     // vegetation
@@ -444,6 +445,8 @@ class ProcessPlants
         $I = $this->tester;
         $I->waitForElement(self::$stage);
         $I->getVisibleText('Vegetation');
+        $I->waitForElement(self::$newDepCheckBox);
+        $I->click(self::$newDepCheckBox);
         self::checkClickPlantId($plantID);
         $I->waitForElement(self::$tablePlant);
         $I->getVisibleText('Test');
@@ -452,16 +455,18 @@ class ProcessPlants
         $I->getVisibleText('H');
         $I->getVisibleText('Test3');
         $I->getVisibleText('Test Notes for Plant');
+        $I->waitForElement(self::$closePlant);
         $I->click(self::$closePlant);
-        $I->waitForElement(self::$newDepCheckBox);
-        $I->click(self::$newDepCheckBox);
-        $I->waitForElement(self::$reverse);
+        $I->wait(3);
+
         /*
-        $I->click(self::$reverse);
-        $I->waitForElement(self::$success);
-        $I->see('Stage Reversed Successfully.',self::$success);
-        $I->click(self::$close);
-        */
+$I->waitForElement(self::$reverse);
+
+$I->click(self::$reverse);
+$I->waitForElement(self::$success);
+$I->see('Stage Reversed Successfully.',self::$success);
+$I->click(self::$close);
+*/
     }
 
     public function checkReverse($newBatch)
