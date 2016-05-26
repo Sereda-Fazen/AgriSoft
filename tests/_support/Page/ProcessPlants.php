@@ -53,7 +53,7 @@ class ProcessPlants
 
 
     public static $clickCancelAllCheckbox = '//*[@id="chkSelectall"]';
-    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[3]//td[18]';
+    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]//td[18]';
     public static $destroy = '//*[@class="span4"]//input[4]';
     public static $showFormDestroy = '//div[@id="DestroyModal"]';
     public static $thereArePlants = '';
@@ -68,7 +68,6 @@ class ProcessPlants
 
     //prune trim
 
-    public static $checkBox2 = '//table[@id="tbl_PlantByBatch"]//tbody/tr[4]//td[18]';
     public static $pruneTrim = '//*[@class="span4"]//input[5]';
     public static $checkBox4 = '//table[@id="tbl_PlantByBatch"]//tbody/tr[4]//td[18]';
     public static $showFormPrune = '//div[@id="TrimModal"]';
@@ -320,7 +319,7 @@ class ProcessPlants
     public function checkAddNotes(){
         $I = $this->tester;
 
-        $I->click(self::$randomCheckBox);
+        $I->click(self::$checkBox4);
         $I->waitForElement(self::$addNotes);
         $I->click(self::$addNotes);
         $I->waitForElement(self::$showFormAddNotes);
@@ -371,7 +370,7 @@ class ProcessPlants
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->acceptPopup('Please select at least one plant.');
-        $I->click(self::$randomCheckBox);
+        $I->click(self::$checkBox4);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
         $I->waitForElement(self::$showFormDevelop);
@@ -444,12 +443,16 @@ class ProcessPlants
     }
 
 
-    /**
-     * @param $vegetation
-     * @param $plantID
-     * Vegetation
-     */
 
+
+
+    public function selectRoomVegetation($selectRoom){
+        $I = $this->tester;
+        $I->selectOption(self::$selectRoom, $selectRoom);
+        $I->getVisibleText($selectRoom);
+        $I->click(self::$showAllVisible);
+        $I->waitForElement(self::$seeTable, 20);
+    }
 
 
     public function checkVegetation($vegetation,$plantID)

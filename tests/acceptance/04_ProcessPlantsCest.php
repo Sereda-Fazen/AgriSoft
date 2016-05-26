@@ -201,7 +201,7 @@ class ProcessPlantsCest
 
     function selectVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->selectRoom('Vegetation');
+        $processPlantsPage->selectRoomVegetation('Vegetation');
     }
 
     function checkFindNewDeployed ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
@@ -211,10 +211,9 @@ class ProcessPlantsCest
 
 
 
-
     function selectVegetation2 ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->selectRoom('Vegetation');
+        $processPlantsPage->selectRoomVegetation('Vegetation');
         $processPlantsPage->selectFilter('Cure Room');
     }
 
@@ -225,7 +224,7 @@ class ProcessPlantsCest
          */
 
         $processPlantsPage->checkDeployForVegetation('Cure Room', 'Curing Rack 1');
-        $processPlantsPage->selectRoom('Flowering');
+        $processPlantsPage->selectRoomVegetation('Flowering');
         $processPlantsPage->selectFilter('Cure Room');
         $processPlantsPage->checkStageVegetation('Flowering','PL16');
     }
