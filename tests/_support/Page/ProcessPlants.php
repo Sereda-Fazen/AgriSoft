@@ -247,6 +247,7 @@ class ProcessPlants
         $I->waitForElement(self::$success);
         //$I->see('Plants moved successfully.', self::$success);
        // $I->click(self::$close);
+        $I->waitForElement(self::$clickScanBarcode);
         $I->click(self::$clickScanBarcode);
 
 
@@ -443,6 +444,9 @@ class ProcessPlants
     }
 
 
+    /**
+     * VEGETATION
+     */
 
 
 
@@ -453,7 +457,6 @@ class ProcessPlants
         $I->click(self::$showAllVisible);
         $I->waitForElement(self::$seeTable, 20);
     }
-
 
     public function checkVegetation($vegetation,$plantID)
     {
@@ -470,7 +473,6 @@ class ProcessPlants
         $I->getVisibleText('Test Notes for Plant');
         $I->waitForElement(self::$closePlant);
         $I->click(self::$closePlant);
-        $I->wait(3);
     }
 
     public function checkDeployVegetation($moveToDevelop, $trayDevelop){
@@ -510,7 +512,6 @@ class ProcessPlants
         $I->see('Plants developed and shifted to next stage.', self::$success);
         $I->click(self::$close);
 
-
     }
 
     public function checkDeployForVegetation($moveToDevelop, $trayDevelop){
@@ -520,6 +521,128 @@ class ProcessPlants
     public function checkStageVegetation($flowering,$plantID){
         self::checkVegetation($flowering,$plantID);
     }
+
+    /**
+     *  FLOWERING
+    **/
+
+
+    public function checkDeployForFlowering($moveToDevelop, $trayDevelop){
+        self::checkDeployVegetation($moveToDevelop, $trayDevelop);
+    }
+    public function checkStageFlowering($flowering,$plantID){
+        self::checkVegetation($flowering,$plantID);
+    }
+
+    
+    /**
+     * HARVESTING
+     */
+
+    public function checkDeployHarvesting($moveToDevelop, $trayDevelop){
+        $I = $this->tester;
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->acceptPopup('Please select at least one plant.');
+        $I->click(self::$newDepCheckBox);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+
+
+
+
+
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop );
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop );
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+        $I->waitForElement(self::$applyChanges);
+        $I->click(self::$applyChanges);
+
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+
+    }
+
+    public function checkDeployForHarvesting($moveToDevelop, $trayDevelop){
+        self::checkDeployHarvesting($moveToDevelop, $trayDevelop);
+    }
+    public function checkStageHarvesting($flowering,$plantID){
+        self::checkVegetation($flowering,$plantID);
+    }
+
+
+    /**
+            DRYING
+     */
+
+    public function checkDeployDrying($weaste,$wet,$moveToDevelop, $trayDevelop)
+    {
+        $I = $this->tester;
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->acceptPopup('Please select at least one plant.');
+        $I->click(self::$newDepCheckBox);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+
+
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop);
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop);
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+        $I->waitForElement(self::$applyChanges);
+        $I->click(self::$applyChanges);
+
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+    }
+
+
+    public function checkDeployForDrying($moveToDevelop, $trayDevelop){
+        self::checkDeployHarvesting($moveToDevelop, $trayDevelop);
+    }
+    public function checkStageDrying($flowering,$plantID){
+        self::checkVegetation($flowering,$plantID);
+    }
+    
+
 
 
 

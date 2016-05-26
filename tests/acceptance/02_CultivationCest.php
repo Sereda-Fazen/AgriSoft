@@ -73,7 +73,7 @@ class CultivationCest
     {
 
         $cultivationPage->prodNameUndefined('Wrong', '123456');
-        $cultivationPage->addProdNameAndQuality('Wh', '77');
+        $cultivationPage->addProdNameAndQuality('Wh', '55');
 
     }
 
@@ -152,7 +152,7 @@ class CultivationCest
 
     function enterQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectQtyFromBatch('77');
+        $cultivationPage->selectQtyFromBatch('55');
     }
 
     /**
@@ -182,7 +182,7 @@ class CultivationCest
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchQty('77');
+        $cultivationPage->searchQty('55');
     }
     function searchData (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
@@ -225,13 +225,13 @@ class CultivationCest
 
     function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkEditOrder('77','06-12-2016', 'Vanya Buvac', 'Clone Room');
+        $cultivationPage->checkEditOrder('55','06-12-2016', 'Vanya Buvac', 'Clone Room');
 
     }
 
     function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkCancelEnterQty('77', '777');
+        $cultivationPage->checkCancelEnterQty('55', '555');
 
     }
     

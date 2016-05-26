@@ -149,23 +149,6 @@ class TestCest
 
     }
 
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Destroy
-     */
-/*
-    function checkDestroy (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkDestroy();
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Prune/Trim
-     */
-
 
     function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
@@ -199,9 +182,29 @@ class TestCest
         $processPlantsPage->checkDeploy('Test123_TEST', 'Cure Room', 'Curing Rack 1');
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * VEGETATION
+     */
+
+
     function selectVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->selectRoom('Vegetation');
+        $processPlantsPage->selectRoomVegetation('Vegetation');
     }
 
     function checkFindNewDeployed ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
@@ -211,10 +214,9 @@ class TestCest
 
 
 
-
-    function selectVegetation2 ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->selectRoom('Vegetation');
+        $processPlantsPage->selectRoomVegetation('Vegetation');
         $processPlantsPage->selectFilter('Cure Room');
     }
 
@@ -225,9 +227,103 @@ class TestCest
          */
 
         $processPlantsPage->checkDeployForVegetation('Cure Room', 'Curing Rack 1');
-        $processPlantsPage->selectRoom('Flowering');
+    }
+
+    function checkNewFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Flowering');
         $processPlantsPage->selectFilter('Cure Room');
         $processPlantsPage->checkStageVegetation('Flowering','PL16');
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * FLOWERING
+     */
+
+    function selectFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Flowering');
+    }
+
+    function checkFindNewFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
+    function checkFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Flowering');
+        $processPlantsPage->selectFilter('Cure Room');
+    }
+
+    function checkDeployForFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         * Processing Deploy Flowering
+         */
+
+        $processPlantsPage->checkDeployForFlowering('Cure Room', 'Curing Rack 1');
+    }
+
+    function checkNewHarvesting ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectRoomVegetation('Harvesting');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkStageVegetation('Harvesting','PL16');
+    }
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * HARVESTING
+     */
+
+    function selectHarvesting ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Harvesting');
+    }
+
+    function checkFindNewHarvesting ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
+    function checkHarvesting ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Harvesting');
+        $processPlantsPage->selectFilter('Cure Room');
+    }
+
+    function checkDeployForHarvesting ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         * Processing Deploy Harvesting
+         */
+
+        $processPlantsPage->checkDeployForHarvesting('Cure Room', 'Curing Rack 1');
+    }
+
+    function checkNewDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectRoomVegetation('Drying');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkStageVegetation('Drying','PL16');
     }
 
 

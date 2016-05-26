@@ -75,7 +75,7 @@ class CuttingPhaseCest
 
     function checkArrowForOrderID (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '06-12-2016', '777', '0','777');
+        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '06-12-2016', '555', '0','555');
     }
 
     /**
@@ -100,13 +100,13 @@ class CuttingPhaseCest
         $cultivationPage->checkSearchDate('06-12-2016');
     }
     function checkSearchTotalQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchTotalQty('777');
+        $cultivationPage->checkSearchTotalQty('555');
     }
     function checkSearchCompletedQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
         $cultivationPage->checkSearchCompletedQty('0');
     }
     function checkSearchPendingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchPendingQty('777');
+        $cultivationPage->checkSearchPendingQty('555');
     }
 
     /**
@@ -146,7 +146,7 @@ class CuttingPhaseCest
 
     function showTableWithData (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->showTableWithData('1','White Widow','777','0', '777');
+        $cultivationPage->showTableWithData('1','White Widow','555','0', '555');
     }
 
     /**
@@ -180,7 +180,7 @@ class CuttingPhaseCest
 
     function enterIncorrectCuttingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->enterIncorrectCuttingQty('778');
+        $cultivationPage->enterIncorrectCuttingQty('556');
     }
 
 
@@ -256,11 +256,11 @@ class CuttingPhaseCest
 
 
     function checkSearchTotal (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchTotalQty('777');
+        $cultivationPage->checkSearchTotalQty('555');
     }
 
     function searchNewQtyInCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchNewCompletedQty('5','772');
+        $cultivationPage->checkSearchNewCompletedQty('5','550');
     }
     
     function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
@@ -268,10 +268,10 @@ class CuttingPhaseCest
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchQty('777');
+        $cultivationPage->searchQty('555');
     }
     function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->seeCompletedQtyPending('5','772');
+        $cultivationPage->seeCompletedQtyPending('5','550');
     }
 
     
