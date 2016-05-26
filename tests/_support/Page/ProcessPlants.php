@@ -182,13 +182,14 @@ class ProcessPlants
         $I->selectOption(self::$selectAll, $select);
         $I->getVisibleText($select);
         $I->waitForElement(self::$selectRoom);
+        $I->click(self::$showAllVisible);
     }
 
     public function selectRoom($selectRoom){
         $I = $this->tester;
         $I->selectOption(self::$selectRoom, $selectRoom);
         $I->getVisibleText($selectRoom);
-        $I->click(self::$showAllVisible);
+        //$I->click(self::$showAllVisible);
         $I->waitForElement(self::$seeTable, 20);
     }
 
@@ -208,6 +209,7 @@ class ProcessPlants
     public function checkClickPlantId($plantID)
     {
         $I = $this->tester;
+        $I->waitForElement(self::$plantID);
         $I->seeLink($plantID, self::$plantID);
         $I->click(self::$plantID);
         $I->waitForElement(self::$plantForm);
@@ -441,12 +443,20 @@ class ProcessPlants
 
     }
 
-    public function checkVegetation($plantID){
+
+    /**
+     * @param $vegetation
+     * @param $plantID
+     * Vegetation
+     */
+
+
+
+    public function checkVegetation($vegetation,$plantID)
+    {
         $I = $this->tester;
         $I->waitForElement(self::$stage);
-        $I->getVisibleText('Vegetation');
-        $I->waitForElement(self::$newDepCheckBox);
-        $I->click(self::$newDepCheckBox);
+        $I->getVisibleText($vegetation);
         self::checkClickPlantId($plantID);
         $I->waitForElement(self::$tablePlant);
         $I->getVisibleText('Test');
@@ -458,6 +468,96 @@ class ProcessPlants
         $I->waitForElement(self::$closePlant);
         $I->click(self::$closePlant);
         $I->wait(3);
+    }
+
+    public function checkDeployVegetation($moveToDevelop, $trayDevelop){
+        $I = $this->tester;
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->acceptPopup('Please select at least one plant.');
+        $I->click(self::$newDepCheckBox);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop );
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop );
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+        $I->waitForElement(self::$applyChanges);
+        $I->click(self::$applyChanges);
+
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+
+
+    }
+
+    public function checkDeployForVegetation($moveToDevelop, $trayDevelop){
+        self::checkDeployVegetation($moveToDevelop, $trayDevelop);
+    }
+
+    public function checkStageVegetation($flowering,$plantID){
+        self::checkVegetation($flowering,$plantID);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /*
 $I->waitForElement(self::$reverse);
@@ -466,7 +566,7 @@ $I->click(self::$reverse);
 $I->waitForElement(self::$success);
 $I->see('Stage Reversed Successfully.',self::$success);
 $I->click(self::$close);
-*/
+
     }
 
     public function checkReverse($newBatch)
@@ -476,7 +576,7 @@ $I->click(self::$close);
         $I->getVisibleText($newBatch);
     }
 
-/*
+
         $I->click(self::$checkBoxReverse);
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);

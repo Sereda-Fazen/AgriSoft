@@ -61,9 +61,16 @@ class TestCest
         $processPlantsPage->selectFilter('Cure Room');
     }
 
-    function checkVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function checkDeployForVegetation ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
-        $processPlantsPage->checkVegetation('PL16');
+        /**
+         * Processing Deploy Vegetation
+         */
+
+        $processPlantsPage->checkDeployForVegetation('Cure Room', 'Curing Rack 1');
+        $processPlantsPage->selectRoom('Flowering');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkStageVegetation('Flowering','PL16');
     }
 
 
