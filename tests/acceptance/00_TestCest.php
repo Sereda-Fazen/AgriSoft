@@ -6,6 +6,7 @@ use \Step\Acceptance;
  */
 class TestCest
 {
+
     /**
      * @param \Page\Cultivation $cultivationPage
      * @param AcceptanceTester $I
@@ -105,30 +106,6 @@ class TestCest
 
     }
 
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Plant ID
-     */
-
-
-    function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkClickPlantId('PL16');
-        $I->getShowPlantNotes();
-    }
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Link Batch
-     */
-    function checkLinkBatch (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkClickBatch('Test123');
-        $I->getShowAssignedLots();
-
-    }
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage
@@ -150,31 +127,6 @@ class TestCest
     }
 
 
-    function checkPruneTrim (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkPruneTrim();
-    }
-
-
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Add Notes
-     */
-
-    function checkAddNotes (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->checkAddNotes();
-    }
-
-
-    /**
-     * @param \Page\ProcessPlants $processPlantsPage
-     * @param Acceptance\CultivationSteps $I
-     * Check Deploy
-     * @internal param \Page\ProcessPlants $processPlants
-     */
 
 
     function checkDeploy ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
@@ -198,7 +150,7 @@ class TestCest
     /**
      * @param \Page\ProcessPlants $processPlantsPage
      * @param Acceptance\CultivationSteps $I
-     * VEGETATION
+     * Next page VEGETATION
      */
 
 
@@ -227,6 +179,7 @@ class TestCest
          */
 
         $processPlantsPage->checkDeployForVegetation('Cure Room', 'Curing Rack 1');
+
     }
 
     function checkNewFlowering ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
@@ -287,6 +240,15 @@ class TestCest
 
 
 
+
+
+
+
+
+
+
+
+
     /**
      * @param \Page\ProcessPlants $processPlantsPage
      * @param Acceptance\CultivationSteps $I
@@ -315,7 +277,7 @@ class TestCest
          * Processing Deploy Harvesting
          */
 
-        $processPlantsPage->checkDeployForHarvesting('Cure Room', 'Curing Rack 1');
+        $processPlantsPage->checkInDeployHarvesting('10','50','Cure Room', 'Curing Rack 1');
     }
 
     function checkNewDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
@@ -325,6 +287,84 @@ class TestCest
         $processPlantsPage->selectFilter('Cure Room');
         $processPlantsPage->checkStageVegetation('Drying','PL16');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * DRYING
+     */
+
+    function selectDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Drying');
+    }
+
+    function checkFindNewDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
+    function checkDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomVegetation('Drying');
+        $processPlantsPage->selectFilter('Cure Room');
+    }
+
+    function checkDeployForDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         * Processing Deploy Drying
+         */
+
+        $processPlantsPage->checkInDeployDrying('10','1','30','Cure Room', 'Curing Rack 1');
+    }
+
+    function checkNewDuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectRoomVegetation('Curing');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123_TEST');
+        $processPlantsPage->checkStageVegetation('Curing','PL16');
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
