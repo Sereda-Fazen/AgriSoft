@@ -55,28 +55,15 @@ class TestCest
 
 
 
-    function checkDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $processPlantsPage->selectRoomVegetation('Drying');
-        $processPlantsPage->checkScanBarcode('Test123_TEST');
-        $processPlantsPage->selectFilter('Cure Room');
+        $cultivationPage->deletePlantOrderList('555');
+
     }
-
-    function checkDeployForDrying ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        /**
-         * Processing Deploy Drying
-         */
+        $cultivationPage->searchInvalidResults('555');
 
-        $processPlantsPage->checkInDeployDrying('10','1','30','Cure Room', 'Curing Rack 1');
-    }
-
-    function checkNewCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
-    {
-
-        $processPlantsPage->selectRoomVegetation('Curing');
-        $processPlantsPage->selectFilter('Cure Room');
-        $processPlantsPage->checkStageVegetation('Curing','PL16');
     }
 
 

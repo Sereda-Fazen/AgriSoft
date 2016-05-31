@@ -21,7 +21,7 @@ class Cultivation
 
     // cultivation
 
-
+    public static $returnPlantOrder = '//*[@class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"]/li[1]/a';
     public static $clickCultivation = '//ul[@class="nav"]/li[4]/a';
     public static $seeCreateOrder = '//div[@id="divOrderForm"]//legend';
 
@@ -413,6 +413,7 @@ class Cultivation
     public function checkCancelEnterQty($qty1, $qty2)
     {
         $I = $this->tester;
+
         $I->fillField(self::$searchUser, $qty1);
         $I->see($qty1, self::$showQty);
         $I->click(self::$edit);
@@ -432,6 +433,9 @@ class Cultivation
     public function deletePlantOrderList($searchID)
     {
         $I = $this->tester;
+        $I->waitForElement(self::$returnPlantOrder);
+        $I->click(self::$returnPlantOrder);
+        $I->waitForElement(self::$searchUser);
         $I->fillField(self::$searchUser, $searchID);
         $I->see($searchID,self::$showQty);
         $I->click(self::$edit);

@@ -409,6 +409,7 @@ class ProcessPlantsCest
 
         $processPlantsPage->selectRoomVegetation('Curing');
         $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123_TEST');
         $processPlantsPage->checkStageVegetation('Curing','PL16');
     }
 
@@ -428,13 +429,6 @@ class ProcessPlantsCest
         $processPlantsPage->checkNewDeployed('Test123_TEST');
     }
 
-    function checkCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
-    {
-        $processPlantsPage->selectRoomDeployed('Curing');
-        $processPlantsPage->checkScanBarcode('Test123_TEST');
-        $processPlantsPage->selectFilterForDeployed('Cure Room');
-    }
-
     function checkDeployForCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
         /**
@@ -450,67 +444,28 @@ class ProcessPlantsCest
 
         $processPlantsPage->selectRoomVegetation('Developed');
         $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkScanBarcode('Test123_TEST');
         $processPlantsPage->checkStageVegetation('Developed','PL16');
     }
 
+    function showFinishStageDeveloped ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        $processPlantsPage->checkFinishDeveloped('Test123_TEST');
+    }
 
     
-
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-/*
-
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->deletePlantOrderList('7777');
+        $cultivationPage->deletePlantOrderList('555');
 
     }
     function checkResultAfterRemoving (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchInvalidResults('7777');
+        $cultivationPage->searchInvalidResults('555');
 
     }
-*/
+
 
 
 

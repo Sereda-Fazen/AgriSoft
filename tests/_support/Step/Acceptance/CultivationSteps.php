@@ -168,6 +168,10 @@ class CultivationSteps extends \AcceptanceTester
             $I->wait(2);
 
     }
+
+
+    
+
     
 
     public function getNewWindowPrint() {

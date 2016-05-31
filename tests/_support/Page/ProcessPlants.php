@@ -175,6 +175,11 @@ class ProcessPlants
     public static $autoCompleteDeveloped1 = '//body/ul[1]/li/a[text()="White Widow Eighth"]';
     public static $autoCompleteDeveloped2 = '//body/ul[2]/li/a[text()="White Widow"]';
 
+    // finish
+
+    public static  $table = '//*[@id="tbl_LotsByBatch"]/thead';
+    public static $tableData = '//*[@id="tbl_LotsByBatch"]/tbody//tr';
+
 
     
     public function __construct(\AcceptanceTester $I)
@@ -310,6 +315,7 @@ class ProcessPlants
         $I->click(self::$checkBox);
         $I->waitForElement(self::$destroy);
         $I->click(self::$destroy);
+        $I->wait(2);
         $I->waitForElement(self::$showFormDestroy);
         $I->getVisibleText('There are 1plant(s) selected to be destroed');
         $I->waitForElement(self::$approve);
@@ -706,12 +712,12 @@ class ProcessPlants
         $I = $this->tester;
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
-/*
+
        $I->acceptPopup('Please select at least one plant.');
        $I->click(self::$newDepCheckBox);
        $I->waitForElement(self::$develop);
        $I->click(self::$develop);
-*/
+
         $I->waitForElement(self::$showFormDevelop);
         $I->getVisibleText('Develop Plants');
         $I->getVisibleText('Developed By');
@@ -746,7 +752,7 @@ class ProcessPlants
         $I->waitForElement(self::$wasteItem);
         $I->fillField(self::$wasteItem, 'Butter');
         $I->waitForText('Butter - 1 lb');
-        $I->click(self::$autoComplete3);
+        $I->click('Butter - 1 lb');
         $I->wait(2);
 
 
@@ -913,33 +919,25 @@ class ProcessPlants
         $I->click(self::$close);
     }
 
+    public function checkFinishDeveloped($checkBatch){
+        $I = $this->tester;
+        $I->waitForElementNotVisible(self::$develop);
+        self::checkClickBatch($checkBatch);
+        $I->getVisibleText(self::$table, 'Lot No.');
+        $I->getVisibleText(self::$table, 'Location');
+        $I->getVisibleText(self::$table, 'Main Strain');
+        $I->getVisibleText(self::$table, 'UOM');
+        $I->getVisibleText(self::$table, 'Weight (grams)');
+        $I->getVisibleText(self::$table, 'Type');
+        $I->getVisibleText(self::$table, 'Created Date');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function checkInDeployForDeveloped($leafTrim,$dryWeight,$moveToDevelop, $trayDevelop){
-        self::checkInDeployCuring($leafTrim,$dryWeight,$moveToDevelop, $trayDevelop);
-
+        $I->getVisibleText(self::$tableData,'LOT00');
+        $I->getVisibleText(self::$tableData,'Cure Room');
+        $I->getVisibleText(self::$tableData,'White Widow');
+        $I->getVisibleText(self::$tableData,'Gram');
+        $I->getVisibleText(self::$tableData,'1');
+        $I->getVisibleText(self::$tableData,'Flower');
+        $I->getVisibleText(self::$tableData,'05-27-2016');
     }
 
     
