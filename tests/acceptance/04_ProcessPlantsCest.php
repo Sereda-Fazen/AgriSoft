@@ -454,7 +454,7 @@ class ProcessPlantsCest
         $processPlantsPage->checkFinishDeveloped('Test123_TEST');
     }
 
-    
+    /*
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->deletePlantOrderList('555');
@@ -465,7 +465,7 @@ class ProcessPlantsCest
         $cultivationPage->searchInvalidResults('555');
 
     }
-
+*/
 
 
 
