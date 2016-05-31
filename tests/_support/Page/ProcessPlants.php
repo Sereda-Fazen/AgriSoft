@@ -110,7 +110,7 @@ class ProcessPlants
     public static $test123 = '//input[@id="txtNewBatchNo"][@placeholder]';
     public static $yesDeploy = '//input[@id="chkSellable"]';
     public static $plantQty = '//input[@id="txtDryWeight"][@placeholder="In Grams Only"]';
-    public static $dryItem = '//*[@id="txtDryItem"]';
+    public static $dryItem = '//input[@id="txtDryItem"]';
     public static $assignedPlant = 'ul.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all';
     public static $assignedPlant2 = 'body > ul:nth-of-type(2)';
     public static $assignedPlant3 = 'body > ul:nth-of-type(3)';
@@ -164,6 +164,17 @@ class ProcessPlants
 
     public static $applyChangesForCuring = '//input[@id="btnDevelopOrder"]';
 
+    public static $autoComplete1 = '//ul[2]/li/a[text()="White Widow Eighth"]';
+    public static $autoComplete2 = '//ul[3]/li/a[text()="White Widow"]';
+    public static $autoComplete3 = '//ul[1]/li/a[text()="Butter - 1 lb"]';
+
+
+    // developed
+
+
+    public static $autoCompleteDeveloped1 = '//body/ul[1]/li/a[text()="White Widow Eighth"]';
+    public static $autoCompleteDeveloped2 = '//body/ul[2]/li/a[text()="White Widow"]';
+
 
     
     public function __construct(\AcceptanceTester $I)
@@ -213,11 +224,20 @@ class ProcessPlants
         //$I->click(self::$showAllVisible);
     }
 
+    public function selectFilterForDeployed($select){
+        $I = $this->tester;
+        $I->waitForElement(self::$selectAll);
+        $I->selectOption(self::$selectAll, $select);
+        $I->getVisibleText($select);
+        $I->waitForElement(self::$selectRoom);
+        $I->click(self::$showAllVisible);
+    }
+
     public function selectRoom($selectRoom){
         $I = $this->tester;
         $I->selectOption(self::$selectRoom, $selectRoom);
         $I->getVisibleText($selectRoom);
-        $I->click(self::$showAllVisible);
+       // $I->click(self::$showAllVisible);
         $I->waitForElement(self::$seeTable, 20);
     }
 
@@ -487,6 +507,14 @@ class ProcessPlants
         $I->waitForElement(self::$seeTable, 20);
     }
 
+
+    public function selectRoomDeployed($selectRoom){
+        $I = $this->tester;
+        $I->selectOption(self::$selectRoom, $selectRoom);
+        $I->getVisibleText($selectRoom);
+
+    }
+
     public function checkVegetation($vegetation,$plantID)
     {
         $I = $this->tester;
@@ -678,10 +706,12 @@ class ProcessPlants
         $I = $this->tester;
         $I->waitForElement(self::$develop);
         $I->click(self::$develop);
-        $I->acceptPopup('Please select at least one plant.');
-        $I->click(self::$newDepCheckBox);
-        $I->waitForElement(self::$develop);
-        $I->click(self::$develop);
+/*
+       $I->acceptPopup('Please select at least one plant.');
+       $I->click(self::$newDepCheckBox);
+       $I->waitForElement(self::$develop);
+       $I->click(self::$develop);
+*/
         $I->waitForElement(self::$showFormDevelop);
         $I->getVisibleText('Develop Plants');
         $I->getVisibleText('Developed By');
@@ -697,32 +727,26 @@ class ProcessPlants
 
         $I->selectOption(self::$selectUser, 'Vanya Buvac');
         $I->getVisibleText('Vanya Buvac');
+        $I->wait(2);
 
-/*
+
+
         $I->waitForElement(self::$dryItem);
-        $I->fillField(self::$dryItem, 'Wh');
-        $I->waitForElement(self::$assignedPlant3);
+        $I->fillField(self::$dryItem, 'White Widow Eighth');
         $I->waitForText('White Widow Eighth');
-        $I->wait(2);
-        $I->click('White Widow Eighth');
-        $I->wait(2);
-*/
+        $I->click(self::$autoComplete1);
+
 
         $I->waitForElement(self::$leafItem);
-        $I->fillField(self::$leafItem, 'White');
+        $I->fillField(self::$leafItem, 'White Widow');
         $I->waitForElement(self::$assignedPlant);
         $I->waitForText('White Widow');
-        $I->wait(2);
-        $I->click('White Widow');
-        $I->wait(2);
-
+        $I->click(self::$autoComplete2);
 
         $I->waitForElement(self::$wasteItem);
         $I->fillField(self::$wasteItem, 'Butter');
-        $I->waitForElement(self::$assignedPlant2);
         $I->waitForText('Butter - 1 lb');
-        $I->wait(2);
-        $I->click('Butter - 1 lb');
+        $I->click(self::$autoComplete3);
         $I->wait(2);
 
 
@@ -742,6 +766,8 @@ class ProcessPlants
         $I->selectOption(self::$trayDevelop, $trayDevelop);
         $I->getVisibleText($trayDevelop);
         $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+
 
         $I->waitForElement(self::$applyLots);
         $I->click(self::$applyLots);
@@ -777,6 +803,7 @@ class ProcessPlants
         $I->wait(4);
 
 
+
         $I->waitForElementVisible(self::$applyChangesForCuring);
         $I->wait(2);
         $I->click(self::$applyChangesForCuring);
@@ -787,8 +814,132 @@ class ProcessPlants
 
     }
 
-    public function checkDeployForCuring($moveToDevelop, $trayDevelop){
-        self::checkDeployHarvesting($moveToDevelop, $trayDevelop);
+    /**
+     * DEVELOPED
+     */
+
+
+    public function checkInDeployCuring($leafTrim,$dryWeight,$moveToDevelop, $trayDevelop)
+    {
+        $I = $this->tester;
+        $I->wait(2);
+        $I->waitForElement(self::$develop);
+        $I->click(self::$develop);
+        $I->waitForElement(self::$showFormDevelop);
+        $I->getVisibleText('Develop Plants');
+        $I->getVisibleText('Developed By');
+        $I->waitForElement(self::$selectUser);
+        $I->getVisibleText('Transition Clones to Inventory');
+        $I->getVisibleText('New Batch Number');
+        $I->getVisibleText('Test123_');
+        $I->waitForElement(self::$test123);
+        $I->getVisibleText('Result');
+        $I->getVisibleText('Scan Tray Barcode (Optional)');
+        $I->getVisibleText('Move To');
+        $I->getVisibleText('Select Tray');
+
+        $I->selectOption(self::$selectUser, 'Vanya Buvac');
+        $I->getVisibleText('Vanya Buvac');
+        $I->wait(2);
+
+
+        $I->waitForElement(self::$dryItem);
+        $I->fillField(self::$dryItem, 'White Widow Eighth');
+        $I->waitForText('White Widow Eighth');
+        $I->click(self::$autoComplete1);
+
+
+        $I->waitForElement(self::$leafItem);
+        $I->fillField(self::$leafItem, 'White Widow');
+        $I->waitForElement(self::$assignedPlant);
+        $I->waitForText('White Widow');
+        $I->click(self::$autoComplete2);
+
+
+        $I->waitForElement(self::$leafTrim);
+        $I->fillField(self::$leafTrim, $leafTrim);
+
+        $I->waitForElement(self::$dryWeight);
+        $I->fillField(self::$dryWeight, $dryWeight);
+
+
+        $I->selectOption(self::$moveToDevelop, $moveToDevelop);
+        $I->getVisibleText($moveToDevelop);
+        $I->selectOption(self::$trayDevelop, $trayDevelop);
+        $I->getVisibleText($trayDevelop);
+        $I->getVisibleText('There are 1 plant(s) selected to be developed.');
+
+
+        $I->waitForElement(self::$applyLots);
+        $I->click(self::$applyLots);
+
+        $I->waitForElement(self::$showApplyLots);
+        $I->getVisibleText('Test123_TEST');
+        $I->wait(2);
+
+        $I->waitForElement(self::$autoGenerate);
+        $I->click(self::$autoGenerate);
+        $I->waitForElement(self::$success);
+        $I->see('Lot Numbers Generated Succussfully. Press `Go Back` button to continue.', self::$success);
+        $I->click(self::$close);
+        $I->wait(2);
+
+        $I->waitForElement(self::$divLots);
+        $I->getVisibleText('Dry Weight Lots');
+        $I->waitForElement(self::$lots);
+        $I->getVisibleText('LOT00');
+        $I->waitForElement(self::$lotsWeight);
+        $I->getVisibleText('30.0000');
+
+        $I->getVisibleText('Leaf/Trim Weight Lots');
+        $I->waitForElement(self::$leafLots);
+        $I->getVisibleText('1.0000');
+
+
+        $I->waitForElement(self::$goBack);
+        $I->click(self::$goBack);
+
+
+        $I->waitForElement(self::$showFormDevelop);
+        $I->wait(4);
+
+
+        $I->waitForElementVisible(self::$applyChangesForCuring);
+        $I->wait(2);
+        $I->click(self::$applyChangesForCuring);
+
+        $I->waitForElement(self::$success);
+        $I->see('Plants developed and shifted to next stage.', self::$success);
+        $I->click(self::$close);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function checkInDeployForDeveloped($leafTrim,$dryWeight,$moveToDevelop, $trayDevelop){
+        self::checkInDeployCuring($leafTrim,$dryWeight,$moveToDevelop, $trayDevelop);
+
     }
 
     

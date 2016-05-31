@@ -72,7 +72,7 @@ class ProcessPlantsCest
          *  Show Action
          */
 
-        $I->getShowActionTable();
+        //$I->getShowActionTable();
 
         /**
          * Select Clone in the filter
@@ -309,10 +309,7 @@ class ProcessPlantsCest
 
 
 
-
-
-
-
+    
 
     /**
      * @param \Page\ProcessPlants $processPlantsPage
@@ -407,15 +404,55 @@ class ProcessPlantsCest
         $processPlantsPage->checkInDeployDrying('10','1','30','Cure Room', 'Curing Rack 1');
     }
 
-    function checkNewDuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    function checkNewCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
     {
 
         $processPlantsPage->selectRoomVegetation('Curing');
         $processPlantsPage->selectFilter('Cure Room');
-        $processPlantsPage->checkScanBarcode('Test123_TEST');
         $processPlantsPage->checkStageVegetation('Curing','PL16');
-
     }
+
+
+
+
+
+    /**
+     * @param \Page\ProcessPlants $processPlantsPage
+     * @param Acceptance\CultivationSteps $I
+     * CURING
+     */
+    
+
+    function checkFindNewCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->checkNewDeployed('Test123_TEST');
+    }
+
+    function checkCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        $processPlantsPage->selectRoomDeployed('Curing');
+        $processPlantsPage->checkScanBarcode('Test123_TEST');
+        $processPlantsPage->selectFilterForDeployed('Cure Room');
+    }
+
+    function checkDeployForCuring ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+        /**
+         * Processing Deploy Drying
+         */
+
+        $processPlantsPage->checkInDeployCuring('1','30','Cure Room', 'Curing Rack 1');
+    }
+
+
+    function checkNewDeveloped ( \Page\ProcessPlants $processPlantsPage ,\Step\Acceptance\CultivationSteps $I)
+    {
+
+        $processPlantsPage->selectRoomVegetation('Developed');
+        $processPlantsPage->selectFilter('Cure Room');
+        $processPlantsPage->checkStageVegetation('Developed','PL16');
+    }
+
 
 
 
