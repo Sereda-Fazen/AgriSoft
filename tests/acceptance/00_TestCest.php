@@ -53,7 +53,12 @@ class TestCest
 
     }
 
-
+    /**
+     * @param \Page\Cultivation $cultivationPage
+     * @param AcceptanceTester $I
+     * Delete Plant Order
+     */
+/*
 
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
@@ -66,7 +71,7 @@ class TestCest
 
     }
 
-
+*/
 
 
 
