@@ -749,11 +749,7 @@ class ProcessPlants
         $I->waitForText('White Widow');
         $I->click(self::$autoComplete2);
 
-        $I->waitForElement(self::$wasteItem);
-        $I->fillField(self::$wasteItem, 'Butter');
-        $I->waitForText('Butter - 1 lb');
-        $I->click('Butter - 1 lb');
-        $I->wait(2);
+
 
 
 
