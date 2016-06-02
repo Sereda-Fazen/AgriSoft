@@ -256,11 +256,11 @@ class CuttingPhaseCest
 
 
     function checkSearchTotal (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchTotalQty('555');
+        $cultivationPage->checkSearchTotalQty('666');
     }
 
     function searchNewQtyInCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchNewCompletedQty('5','550');
+        $cultivationPage->checkSearchNewCompletedQty('5','661');
     }
     
     function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
@@ -268,10 +268,10 @@ class CuttingPhaseCest
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchQty('555');
+        $cultivationPage->searchQty('666');
     }
     function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->seeCompletedQtyPending('5','550');
+        $cultivationPage->seeCompletedQtyPending('5','661');
     }
 
     

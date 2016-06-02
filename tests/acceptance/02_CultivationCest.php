@@ -73,7 +73,7 @@ class CultivationCest
     {
 
         $cultivationPage->prodNameUndefined('Wrong', '123456');
-        $cultivationPage->addProdNameAndQuality('Wh', '55');
+        $cultivationPage->addProdNameAndQuality('Wh', '66');
 
     }
 
@@ -152,7 +152,7 @@ class CultivationCest
 
     function enterQtyFromBatch (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->selectQtyFromBatch('55');
+        $cultivationPage->selectQtyFromBatch('66');
     }
 
     /**
@@ -182,7 +182,7 @@ class CultivationCest
     }
     function searchQty (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->searchQty('55');
+        $cultivationPage->searchQty('66');
     }
     function searchData (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
@@ -231,7 +231,7 @@ class CultivationCest
 
     function checkCancelEnterQty (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkCancelEnterQty('55', '555');
+        $cultivationPage->checkCancelEnterQty('66', '666');
 
     }
     
