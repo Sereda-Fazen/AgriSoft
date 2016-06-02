@@ -75,7 +75,7 @@ class CuttingPhaseCest
 
     function checkArrowForOrderID (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '06-12-2016', '555', '0','555');
+        $cultivationPage->checkArrowForOrderID('O1600','White Widow','Hybrid', 'Vanya Buvac', '06-12-2016', '666', '0','666');
     }
 
     /**
@@ -100,13 +100,13 @@ class CuttingPhaseCest
         $cultivationPage->checkSearchDate('06-12-2016');
     }
     function checkSearchTotalQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchTotalQty('555');
+        $cultivationPage->checkSearchTotalQty('666');
     }
     function checkSearchCompletedQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
         $cultivationPage->checkSearchCompletedQty('0');
     }
     function checkSearchPendingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchPendingQty('555');
+        $cultivationPage->checkSearchPendingQty('666');
     }
 
     /**
@@ -146,7 +146,7 @@ class CuttingPhaseCest
 
     function showTableWithData (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->showTableWithData('1','White Widow','555','0', '555');
+        $cultivationPage->showTableWithData('1','White Widow','666','0', '666');
     }
 
     /**
@@ -180,7 +180,7 @@ class CuttingPhaseCest
 
     function enterIncorrectCuttingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->enterIncorrectCuttingQty('556');
+        $cultivationPage->enterIncorrectCuttingQty('667');
     }
 
 
