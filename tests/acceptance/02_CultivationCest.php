@@ -225,7 +225,7 @@ class CultivationCest
 
     function checkEditOrder (\Page\Cultivation $cultivationPage, \Step\Acceptance\CultivationSteps $I)
     {
-        $cultivationPage->checkEditOrder('55','06-12-2016', 'Vanya Buvac', 'Clone Room');
+        $cultivationPage->checkEditOrder('66','06-12-2016', 'Vanya Buvac', 'Clone Room');
 
     }
 
