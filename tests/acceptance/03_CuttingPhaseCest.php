@@ -186,7 +186,7 @@ class CuttingPhaseCest
 
     function enterCuttingQty (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->enterCuttingQty('5');
+        $cultivationPage->enterCuttingQty('2');
     }
 
     function checkNullCuttingBatch (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
@@ -212,7 +212,7 @@ class CuttingPhaseCest
 
     function navigateToNetPage (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
     {
-        $cultivationPage->navigateToNetPage('5');
+        $cultivationPage->navigateToNetPage('2');
     }
 
     function checkBottomSaveScanRFID (\Page\Cutting $cultivationPage, \AcceptanceTester $I)
@@ -260,7 +260,7 @@ class CuttingPhaseCest
     }
 
     function searchNewQtyInCutting (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->checkSearchNewCompletedQty('5','661');
+        $cultivationPage->checkSearchNewCompletedQty('2','664');
     }
     
     function searchNewQtyInPlantOrder (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
@@ -271,7 +271,7 @@ class CuttingPhaseCest
         $cultivationPage->searchQty('666');
     }
     function seeCompletedQtyPending (\Page\Cutting $cultivationPage, \AcceptanceTester $I){
-        $cultivationPage->seeCompletedQtyPending('5','661');
+        $cultivationPage->seeCompletedQtyPending('2','664');
     }
 
     

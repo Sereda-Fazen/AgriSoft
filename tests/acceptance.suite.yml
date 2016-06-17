@@ -7,7 +7,7 @@ modules:
 
     config:
         WebDriver:
-            url: 'https://agrisoftlive.com'
+            url: 'https://agrisoftlive.com/'
             browser: chrome
 
             window_size: 1980x1780
