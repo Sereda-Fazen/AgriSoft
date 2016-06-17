@@ -81,7 +81,7 @@ class Cutting
 
     // next page
 
-    public static $str = '//div[@id="CutList"]/div/table//tr[5]/td[@data-rowid="SrNo"]';
+    public static $str = '//div[@id="CutList"]/div/table//tr[2]/td[@data-rowid="SrNo"]';
 
     public static $scanRfid = '//*[@id="CutList"]/div[2]/input[3]';
 
@@ -91,7 +91,7 @@ class Cutting
     public static $generateBarcode = '//*[@id="tbl_cutlist"]/tbody/tr/td[6]/input[@disabled="disabled"]';
     public static $barcode = '//*[@id="CutList"]/div[2]/input[5]';
     public static $showBarcode = '//*[@id="cboxLoadedContent"]';
-    public static $fiveFields = '//*[@id="divCodeList"]/div/ul/li[5]';
+    public static $twoFields = '//*[@id="divCodeList"]/div/ul/li[2]';
     public static $close = '//*[@id="cboxClose"]';
     public static $ok = '//*[@id="divCodeList"]/div[2]//input';
     public static $showRandomBarcode = '//*[@id="tbl_cutlist"]/tbody/tr/td[6]/input[@disabled="disabled"]';
@@ -337,8 +337,8 @@ class Cutting
         $I->seeElement(self::$generateBarcode);
         $I->click(self::$barcode);
         $I->waitForElement(self::$showBarcode);
-        $I->waitForElement(self::$fiveFields);
-        $I->seeElement(self::$fiveFields);
+        $I->waitForElement(self::$twoFields);
+        $I->seeElement(self::$twoFields);
         $I->click(self::$close);
         $I->waitForElement(self::$barcode);
         $I->wait(2);

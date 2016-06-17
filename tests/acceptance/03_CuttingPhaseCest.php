@@ -239,7 +239,7 @@ class CuttingPhaseCest
         /**
          * GenerateBarcode
          */
-        $cultivationPage->checkBottomGenerateBarcode('BL11614');
+        $cultivationPage->checkBottomGenerateBarcode('BL1');
     }
 
     /**

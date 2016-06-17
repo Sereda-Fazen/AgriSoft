@@ -110,7 +110,7 @@ class ProcessPlantsCest
      * @param Acceptance\CultivationSteps $I
      * Check Plant ID
      */
-
+/*
 
     function checkLinksPlantId (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
@@ -123,6 +123,8 @@ class ProcessPlantsCest
      * @param Acceptance\CultivationSteps $I
      * Check Link Batch
      */
+
+    /*
     function checkLinkBatch (\Page\ProcessPlants $processPlantsPage, \Step\Acceptance\CultivationSteps $I)
     {
         $processPlantsPage->checkClickBatch('Test123');

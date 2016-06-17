@@ -53,7 +53,7 @@ class ProcessPlants
 
 
     public static $clickCancelAllCheckbox = '//*[@id="chkSelectall"]';
-    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]//td[18]';
+    public static $checkBox = '//table[@id="tbl_PlantByBatch"]//tbody/tr[2]//td[18]';
     public static $destroy = '//*[@class="span4"]//input[4]';
     public static $showFormDestroy = '//div[@id="DestroyModal"]';
     public static $thereArePlants = '';
@@ -64,7 +64,7 @@ class ProcessPlants
     public static $seeQuantity = '//span[@id="confirmDestroy"]';
     public static $clickOnOne = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]//button[7]';
     public static $clickAgreeNum = '//div[@class="ui-keyboard ui-widget-content ui-widget ui-corner-all ui-helper-clearfix ui-keyboard-has-focus"]//button[14]';
-    public static $doNotSeeFiveString = '//table[@id="tbl_PlantByBatch"]//tbody/tr[5]';
+    public static $doNotSeeFiveString = '//table[@id="tbl_PlantByBatch"]//tbody/tr[2]';
 
     //prune trim
 
@@ -299,14 +299,14 @@ class ProcessPlants
         $I->getVisibleText($selectTray);
         $I->click(self::$apply);
         $I->waitForElement(self::$success);
-        //$I->see('Plants moved successfully.', self::$success);
-       // $I->click(self::$close);
+        $I->see('Plants moved successfully.', self::$success);
+        $I->click(self::$close);
+        $I->wait(2);
         $I->waitForElement(self::$clickScanBarcode);
         $I->click(self::$clickScanBarcode);
 
 
     }
-
 
     public function checkDestroy(){
         $I = $this->tester;
