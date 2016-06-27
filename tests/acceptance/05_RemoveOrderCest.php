@@ -48,7 +48,7 @@ class RemoveOrderCest
      * @internal param \Page\ProcessPlants $cuttingPage
      */
 
-    
+
     function deletePlantOrderList (\Page\Cultivation $cultivationPage, \AcceptanceTester $I)
     {
         $cultivationPage->deletePlantOrderList('666');
