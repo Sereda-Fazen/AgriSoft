@@ -30,15 +30,9 @@ class LoginCest
     {
 
         $loginPage->enterFields('123456', 'test1234');
-        $I->see('No such user exists in system.', '//div[@id="errormsg"]');
+        $I->see('No such user exists in system.', '//div[@id="errorms"]');
     }
 
-    function checkSuccessLogin (\Page\Login $loginPage, \AcceptanceTester $I)
-    {
 
-        $loginPage->enterFields('vbuvac', 'Password1');
-        $I->getVisibleText('Select Location');
-        $I->comment('Expected results: Check validation for user');
-    }
 
 }

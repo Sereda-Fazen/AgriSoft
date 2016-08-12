@@ -18,7 +18,7 @@ class ProcessPlants
     // select filter
 
     public static $selectRoom = '//*[@id="SelectRoom"]';
-    public static $showAllVisible = '//input[@id="showAllPlants"]';
+    public static $showAllVisible = '//*[@id="showAllPlants"]';
     public static $seeTable = '//table[@id="tbl_PlantByBatch"]//tbody';
 
     // scan barcode
@@ -446,7 +446,7 @@ class ProcessPlants
 
         $I->selectOption(self::$selectUser, 'Vanya Buvac');
         $I->getVisibleText('Vanya Buvac');
-        $I->click(self::$yesDeploy);
+        //$I->click(self::$yesDeploy);
         $I->getVisibleText('Plant Qty.');
         $I->waitForElement(self::$plantQty);
         $I->getVisibleText('Assign Plant Stock to Item');
