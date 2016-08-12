@@ -16,22 +16,10 @@ class LoginCest
     function checkEmptyEmail (\Page\Login $loginPage, \AcceptanceTester $I)
     {
         $loginPage->enterFields('', 'test');
-        $I->see('Please Enter User Name.', '//div[@id="errormsg"]');
+        $I->see('Please Enter User Name.', '//div[@id="errorms"]');
     }
 
-    function checkShortPass (\Page\Login $loginPage, \AcceptanceTester $I)
-    {
 
-        $loginPage->enterFields('test', 'test');
-        $I->getVisibleText('Please lengthen this text to 8 characters');
-    }
-
-    function checkNoSuchUser (\Page\Login $loginPage, \AcceptanceTester $I)
-    {
-
-        $loginPage->enterFields('123456', 'test1234');
-        $I->see('No such user exists in system.', '//div[@id="errorms"]');
-    }
 
 
 
